@@ -66,12 +66,20 @@ func (p *CouchBasePlugin) CollectMetrics(mts []plugin.MetricType) ([]plugin.Metr
 
 	results := make([]plugin.MetricType, len(mts))
 
+	//calls := map[int]bool{}
+
+	/*metrics, err := p.couchbase.Collect(calls)
+	if err != nil {
+		return nil, err
+	}
+	*/
+
 	t := time.Now()
 
 	for i, mt := range mts {
 		results[i] = plugin.MetricType{
 			Namespace_: mt.Namespace(),
-			Data_:      0,
+			Data_:      0,//metrics[parseName(mt.Namespace().Strings())],
 			Timestamp_: t,
 		}
 	}
@@ -141,4 +149,10 @@ func makeName(m string) []string {
 	res = append(res, strings.Split(m, "/")...)
 
 	return res
+}
+
+// parseName extracts metric path from namespace by trimming prefix and concatenating
+// remaining segments with '/'.
+func parseName(ns []string) string {
+	return strings.Join(ns[len(namespacePrefix):], "/")
 }

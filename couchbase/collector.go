@@ -15,7 +15,6 @@ func NewCollector() *metricCollector {
 
 // metricCollector implements logic for discovering available metrics
 type metricCollector struct {
-
 }
 
 // Collect performs given set of calls (indicated by true value in metrics map).

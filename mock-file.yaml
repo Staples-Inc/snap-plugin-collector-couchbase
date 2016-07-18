@@ -1,0 +1,23 @@
+---
+  version: 1
+  schedule: 
+    type: "simple"
+    interval: "10s"
+  max-failures: 10
+  workflow: 
+    collect: 
+      metrics: 
+        /intel/couchbase/mem_actual_free: {}
+      config: 
+        /intel/couchbase: 
+          name: "root"
+          password: "secret"
+      process: 
+        - 
+          plugin_name: "passthru"
+          process: null
+          publish: 
+            - 
+              plugin_name: "file"
+              config: 
+                file: "/tmp/snap_published_couchbase_file.log"
