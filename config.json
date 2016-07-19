@@ -1,0 +1,14 @@
+{
+    "control": {
+        "plugins": {
+            "collector": {
+                "couchbase": {
+                    "all": {
+                        "api_url": "http://localhost:32777/pools/default/buckets/travel-sample/stats",
+			 "mysql_use_innodb": true
+                    }
+                }
+            }
+        }
+    }
+}

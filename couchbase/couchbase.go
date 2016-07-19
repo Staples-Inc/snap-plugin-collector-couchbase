@@ -4,7 +4,10 @@ import (
 	"github.com/intelsdi-x/snap/control/plugin"
 	"github.com/intelsdi-x/snap/control/plugin/cpolicy"
 	"github.com/intelsdi-x/snap/core"
+	"github.com/intelsdi-x/snap-plugin-utilities/config"
 
+	"sync"
+	"fmt"
 	"strings"
 	"time"
 )
@@ -27,6 +30,8 @@ type CouchBasePlugin struct {
 
 	// an interface for the metrics collector
 	couchbase collector
+
+	initializedMutex *sync.Mutex
 }
 
 // Meta returns plugin's metadata
@@ -38,7 +43,16 @@ func Meta() *plugin.PluginMeta {
 func New() *CouchBasePlugin {
 	self := new(CouchBasePlugin)
 	self.callDiscovery = map[string]int{}
+	//	self.Test()
+	self.initializedMutex = new(sync.Mutex)
 	return self
+}
+
+func (p *CouchBasePlugin) Test() {
+	p.init("")
+	calls := map[int]bool{}
+	datass, _ := p.couchbase.Collect(calls)
+	fmt.Println(datass["couch_total_disk_size"].([]interface{}))
 }
 
 // GetConfigPolicy returns plugin config policy
@@ -63,23 +77,27 @@ func (p *CouchBasePlugin) CollectMetrics(mts []plugin.MetricType) ([]plugin.Metr
 	} else {
 		return mts, nil
 	}
+	
 
+	// results to be returned
 	results := make([]plugin.MetricType, len(mts))
 
-	//calls := map[int]bool{}
+	// TODO: Use this to make unique collections. Does nothing right now.
+	calls := map[int]bool{}
 
-	/*metrics, err := p.couchbase.Collect(calls)
+	metrics, err := p.couchbase.Collect(calls)
+
 	if err != nil {
 		return nil, err
 	}
-	*/
 
 	t := time.Now()
 
 	for i, mt := range mts {
+		value := metrics[parseName(mt.Namespace().Strings())].([]interface{})[0]
 		results[i] = plugin.MetricType{
 			Namespace_: mt.Namespace(),
-			Data_:      0,//metrics[parseName(mt.Namespace().Strings())],
+			Data_:      value,
 			Timestamp_: t,
 		}
 	}
@@ -109,12 +127,18 @@ func (p *CouchBasePlugin) GetMetricTypes(cfg plugin.ConfigType) ([]plugin.Metric
 // and constructs all service objets that will be used during plugin's lifetime.
 // returns error if initialization failed.
 func (p *CouchBasePlugin) init(cfg interface{}) error {
+
 	if p.initialized {
 		return nil
 	}
 
 	// TODO: GET CONFIG ITEMS
-	p.couchbase = makeCollector()
+	cfgItems, err := config.GetConfigItems(cfg, "api_url")	
+	if err != nil {
+		return fmt.Errorf("plugin initalization failed : [%v]", err)
+	}
+
+	p.couchbase = makeCollector(cfgItems)
 
 	metrics, err := p.couchbase.Discover()
 	if err != nil {
@@ -131,7 +155,7 @@ func (p *CouchBasePlugin) init(cfg interface{}) error {
 }
 
 // for mocking
-var makeCollector = func() collector { return NewCollector() }
+var makeCollector = func(cfg map[string]interface{}) collector { return NewCollector(cfg) }
 
 // prefix of all namespaces
 var namespacePrefix = []string{"intel", "couchbase"}

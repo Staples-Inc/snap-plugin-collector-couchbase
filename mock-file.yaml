@@ -10,8 +10,8 @@
         /intel/couchbase/mem_actual_free: {}
       config: 
         /intel/couchbase: 
-          name: "root"
-          password: "secret"
+          name: "admin"
+          password: "password"
       process: 
         - 
           plugin_name: "passthru"
