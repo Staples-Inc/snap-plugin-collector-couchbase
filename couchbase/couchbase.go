@@ -1,12 +1,11 @@
 package couchbase
 
 import (
+	"github.com/intelsdi-x/snap-plugin-utilities/config"
 	"github.com/intelsdi-x/snap/control/plugin"
 	"github.com/intelsdi-x/snap/control/plugin/cpolicy"
 	"github.com/intelsdi-x/snap/core"
-	"github.com/intelsdi-x/snap-plugin-utilities/config"
 
-	"sync"
 	"fmt"
 	"strings"
 	"time"
@@ -24,14 +23,10 @@ const (
 type CouchBasePlugin struct {
 	// is initialized
 	initialized bool
-
 	// mapping of metric namespaces and type
 	callDiscovery map[string]int
-
 	// an interface for the metrics collector
 	couchbase collector
-
-	initializedMutex *sync.Mutex
 }
 
 // Meta returns plugin's metadata
@@ -43,8 +38,8 @@ func Meta() *plugin.PluginMeta {
 func New() *CouchBasePlugin {
 	self := new(CouchBasePlugin)
 	self.callDiscovery = map[string]int{}
+
 	//	self.Test()
-	self.initializedMutex = new(sync.Mutex)
 	return self
 }
 
@@ -77,7 +72,6 @@ func (p *CouchBasePlugin) CollectMetrics(mts []plugin.MetricType) ([]plugin.Metr
 	} else {
 		return mts, nil
 	}
-	
 
 	// results to be returned
 	results := make([]plugin.MetricType, len(mts))
@@ -132,8 +126,7 @@ func (p *CouchBasePlugin) init(cfg interface{}) error {
 		return nil
 	}
 
-	// TODO: GET CONFIG ITEMS
-	cfgItems, err := config.GetConfigItems(cfg, "api_url")	
+	cfgItems, err := config.GetConfigItems(cfg, "api_url", "username", "password")
 	if err != nil {
 		return fmt.Errorf("plugin initalization failed : [%v]", err)
 	}

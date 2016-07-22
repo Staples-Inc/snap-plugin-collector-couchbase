@@ -7,11 +7,8 @@
   workflow: 
     collect: 
       metrics: 
-        /intel/couchbase/mem_actual_free: {}
+        /intel/couchbase/*: {}
       config: 
-        /intel/couchbase: 
-          name: "admin"
-          password: "password"
       process: 
         - 
           plugin_name: "passthru"
