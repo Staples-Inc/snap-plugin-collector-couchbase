@@ -151,7 +151,7 @@ func (p *CouchBasePlugin) init(cfg interface{}) error {
 var makeCollector = func(cfg map[string]interface{}) collector { return NewCollector(cfg) }
 
 // prefix of all namespaces
-var namespacePrefix = []string{"intel", "couchbase"}
+var namespacePrefix = []string{"staples", "couchbase"}
 
 type collector interface {
 	Discover() ([]metric, error)
