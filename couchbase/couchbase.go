@@ -38,16 +38,7 @@ func Meta() *plugin.PluginMeta {
 func New() *CouchBasePlugin {
 	self := new(CouchBasePlugin)
 	self.callDiscovery = map[string]int{}
-
-	//	self.Test()
 	return self
-}
-
-func (p *CouchBasePlugin) Test() {
-	p.init("")
-	calls := map[int]bool{}
-	datass, _ := p.couchbase.Collect(calls)
-	fmt.Println(datass["couch_total_disk_size"].([]interface{}))
 }
 
 // GetConfigPolicy returns plugin config policy
@@ -88,7 +79,7 @@ func (p *CouchBasePlugin) CollectMetrics(mts []plugin.MetricType) ([]plugin.Metr
 	t := time.Now()
 
 	for i, mt := range mts {
-		value := metrics[parseName(mt.Namespace().Strings())].([]interface{})[0]
+		value := metrics[parseName(mt.Namespace().Strings())]
 		results[i] = plugin.MetricType{
 			Namespace_: mt.Namespace(),
 			Data_:      value,

@@ -7,7 +7,7 @@
   workflow: 
     collect: 
       metrics: 
-        /intel/couchbase/*: {}
+        /staples/couchbase/couch_total_disk_size: {}
       config: 
       process: 
         - 

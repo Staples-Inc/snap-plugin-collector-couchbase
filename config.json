@@ -4,7 +4,7 @@
             "collector": {
                 "couchbase": {
                     "all": {
-                        "api_url": "http://localhost:32777/pools/default/buckets/travel-sample/stats",
+                        "api_url": "http://localhost:32787/pools/default/buckets/travel-sample/stats",
 			"username": "admin",
 			"password": "password",
                     }
