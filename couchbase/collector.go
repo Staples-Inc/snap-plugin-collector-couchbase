@@ -31,16 +31,10 @@ type metricCollector struct {
 	samples metrictap
 }
 
-// metric contains name of metric and id of call that collects particular metric.
-type metric struct {
-	Name string
-	Call int
-}
-
 // Collect performs given set of calls (indicated by true value in metrics map).
 // returns map of metric values (accessible by metric name). If any of requested
 // calls fail error is returned.
-func (mc *metricCollector) Collect(metrics map[int]bool) (map[string]interface{}, error) {
+func (mc *metricCollector) Collect() (map[string]interface{}, error) {
 	samples, err := mc.samples.GetSamples()
 	if err != nil {
 		return nil, err
@@ -49,24 +43,24 @@ func (mc *metricCollector) Collect(metrics map[int]bool) (map[string]interface{}
 	return samples, nil
 }
 
-// Discover performs metric discovery. Returns valid metric names and associated
-// Call id's. If mandatory request fails error is returned.
-func (mc *metricCollector) Discover() ([]metric, error) {
+// Discover performs metric discovery. Returns valid metric names and
+// if mandatory request fails error is returned.
+func (mc *metricCollector) Discover() ([]string, error) {
 	samples, err := mc.samples.GetSamples()
 	if err != nil {
 		return nil, err
 	}
 
-	res := []metric{}
+	res := []string{}
 
 	for key := range samples {
-		res = append(res, metric{Name: key, Call: 0})
+		res = append(res, key)
 	}
 
 	return res, nil
 }
 
-// Interface for couchbase
+// Interface for couchbase api taps
 type metrictap interface {
 	GetSamples() (samples map[string]interface{}, err error)
 }

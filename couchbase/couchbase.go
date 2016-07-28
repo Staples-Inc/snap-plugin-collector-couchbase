@@ -67,10 +67,7 @@ func (p *CouchBasePlugin) CollectMetrics(mts []plugin.MetricType) ([]plugin.Metr
 	// results to be returned
 	results := make([]plugin.MetricType, len(mts))
 
-	// TODO: Use this to make unique collections. Does nothing right now.
-	calls := map[int]bool{}
-
-	metrics, err := p.couchbase.Collect(calls)
+	metrics, err := p.couchbase.Collect()
 
 	if err != nil {
 		return nil, err
@@ -131,7 +128,7 @@ func (p *CouchBasePlugin) init(cfg interface{}) error {
 
 	for _, m := range metrics {
 		// TODO: GROUP TYPE OF METRICS
-		p.callDiscovery[m.Name] = 0
+		p.callDiscovery[m] = 0
 	}
 
 	p.initialized = true
@@ -145,8 +142,8 @@ var makeCollector = func(cfg map[string]interface{}) collector { return NewColle
 var namespacePrefix = []string{"staples", "couchbase"}
 
 type collector interface {
-	Discover() ([]metric, error)
-	Collect(metrics map[int]bool) (map[string]interface{}, error)
+	Discover() ([]string, error)
+	Collect() (map[string]interface{}, error)
 }
 
 // makeName makes namespace from metric path (with segments separated by '/' ) and
