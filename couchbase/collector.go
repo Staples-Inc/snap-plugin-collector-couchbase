@@ -73,9 +73,40 @@ type BucketStats struct {
 }
 
 func (self BucketStats) GetSamples() (samples map[string]interface{}, err error) {
+
+	// Make init request to /pools/default/buckets/
+	var buckets []map[string]interface{}
+	self.GetAuthRequest(self.url, &buckets)
+
+	samples = make(map[string]interface{})
+
+	// For each bucket get name and make /stats request
+	for _, b := range buckets {
+		name := b["name"].(string)
+
+		var stats map[string]interface{}
+		rurl := self.url + name + "/stats"
+
+		err = self.GetAuthRequest(rurl, &stats)
+		if err != nil {
+			return
+		}
+
+		res := stats["op"].(map[string]interface{})["samples"].(map[string]interface{})
+
+		for key, value := range res {
+			sk := name + "/" + key
+			samples[sk] = value.([]interface{})[0]
+		}
+	}
+
+	return
+}
+
+func (self BucketStats) GetAuthRequest(rurl string, data interface{}) (err error) {
 	client := &http.Client{}
 
-	req, err := http.NewRequest("GET", self.url, nil)
+	req, err := http.NewRequest("GET", rurl, nil)
 	req.SetBasicAuth(self.un, self.pw)
 	resp, err := client.Do(req)
 	if err != nil {
@@ -87,19 +118,7 @@ func (self BucketStats) GetSamples() (samples map[string]interface{}, err error)
 		return
 	}
 
-	var couchdata map[string]interface{}
-	err = json.Unmarshal(body, &couchdata)
-	if err != nil {
-		return
-	}
-
-	res := couchdata["op"].(map[string]interface{})["samples"].(map[string]interface{})
-
-	samples = make(map[string]interface{})
-
-	for key, value := range res {
-		samples[key] = value.([]interface{})[0]
-	}
+	err = json.Unmarshal(body, data)
 
 	return
 }
