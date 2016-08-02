@@ -1,0 +1,863 @@
+rules:
+  - pattern: "%app%.%host%.NAMESPACE"
+    metric_key: NAMESPACE
+  - pattern: "%app%.%host%.couchbase.default.avg_bg_wait_time"
+    metric_key: couchbase.default.avg_bg_wait_time
+  - pattern: "%app%.%host%.couchbase.default.avg_disk_commit_time"
+    metric_key: couchbase.default.avg_disk_commit_time
+  - pattern: "%app%.%host%.couchbase.default.avg_disk_update_time"
+    metric_key: couchbase.default.avg_disk_update_time
+  - pattern: "%app%.%host%.couchbase.default.bg_wait_count"
+    metric_key: couchbase.default.bg_wait_count
+  - pattern: "%app%.%host%.couchbase.default.bg_wait_total"
+    metric_key: couchbase.default.bg_wait_total
+  - pattern: "%app%.%host%.couchbase.default.bytes_read"
+    metric_key: couchbase.default.bytes_read
+  - pattern: "%app%.%host%.couchbase.default.bytes_written"
+    metric_key: couchbase.default.bytes_written
+  - pattern: "%app%.%host%.couchbase.default.cas_badval"
+    metric_key: couchbase.default.cas_badval
+  - pattern: "%app%.%host%.couchbase.default.cas_hits"
+    metric_key: couchbase.default.cas_hits
+  - pattern: "%app%.%host%.couchbase.default.cas_misses"
+    metric_key: couchbase.default.cas_misses
+  - pattern: "%app%.%host%.couchbase.default.cmd_get"
+    metric_key: couchbase.default.cmd_get
+  - pattern: "%app%.%host%.couchbase.default.cmd_set"
+    metric_key: couchbase.default.cmd_set
+  - pattern: "%app%.%host%.couchbase.default.couch_docs_actual_disk_size"
+    metric_key: couchbase.default.couch_docs_actual_disk_size
+  - pattern: "%app%.%host%.couchbase.default.couch_docs_data_size"
+    metric_key: couchbase.default.couch_docs_data_size
+  - pattern: "%app%.%host%.couchbase.default.couch_docs_disk_size"
+    metric_key: couchbase.default.couch_docs_disk_size
+  - pattern: "%app%.%host%.couchbase.default.couch_docs_fragmentation"
+    metric_key: couchbase.default.couch_docs_fragmentation
+  - pattern: "%app%.%host%.couchbase.default.couch_spatial_data_size"
+    metric_key: couchbase.default.couch_spatial_data_size
+  - pattern: "%app%.%host%.couchbase.default.couch_spatial_disk_size"
+    metric_key: couchbase.default.couch_spatial_disk_size
+  - pattern: "%app%.%host%.couchbase.default.couch_spatial_ops"
+    metric_key: couchbase.default.couch_spatial_ops
+  - pattern: "%app%.%host%.couchbase.default.couch_total_disk_size"
+    metric_key: couchbase.default.couch_total_disk_size
+  - pattern: "%app%.%host%.couchbase.default.couch_views_actual_disk_size"
+    metric_key: couchbase.default.couch_views_actual_disk_size
+  - pattern: "%app%.%host%.couchbase.default.couch_views_data_size"
+    metric_key: couchbase.default.couch_views_data_size
+  - pattern: "%app%.%host%.couchbase.default.couch_views_disk_size"
+    metric_key: couchbase.default.couch_views_disk_size
+  - pattern: "%app%.%host%.couchbase.default.couch_views_fragmentation"
+    metric_key: couchbase.default.couch_views_fragmentation
+  - pattern: "%app%.%host%.couchbase.default.couch_views_ops"
+    metric_key: couchbase.default.couch_views_ops
+  - pattern: "%app%.%host%.couchbase.default.cpu_idle_ms"
+    metric_key: couchbase.default.cpu_idle_ms
+  - pattern: "%app%.%host%.couchbase.default.cpu_local_ms"
+    metric_key: couchbase.default.cpu_local_ms
+  - pattern: "%app%.%host%.couchbase.default.cpu_utilization_rate"
+    metric_key: couchbase.default.cpu_utilization_rate
+  - pattern: "%app%.%host%.couchbase.default.curr_connections"
+    metric_key: couchbase.default.curr_connections
+  - pattern: "%app%.%host%.couchbase.default.curr_items"
+    metric_key: couchbase.default.curr_items
+  - pattern: "%app%.%host%.couchbase.default.curr_items_tot"
+    metric_key: couchbase.default.curr_items_tot
+  - pattern: "%app%.%host%.couchbase.default.decr_hits"
+    metric_key: couchbase.default.decr_hits
+  - pattern: "%app%.%host%.couchbase.default.decr_misses"
+    metric_key: couchbase.default.decr_misses
+  - pattern: "%app%.%host%.couchbase.default.delete_hits"
+    metric_key: couchbase.default.delete_hits
+  - pattern: "%app%.%host%.couchbase.default.delete_misses"
+    metric_key: couchbase.default.delete_misses
+  - pattern: "%app%.%host%.couchbase.default.disk_commit_count"
+    metric_key: couchbase.default.disk_commit_count
+  - pattern: "%app%.%host%.couchbase.default.disk_commit_total"
+    metric_key: couchbase.default.disk_commit_total
+  - pattern: "%app%.%host%.couchbase.default.disk_update_count"
+    metric_key: couchbase.default.disk_update_count
+  - pattern: "%app%.%host%.couchbase.default.disk_update_total"
+    metric_key: couchbase.default.disk_update_total
+  - pattern: "%app%.%host%.couchbase.default.disk_write_queue"
+    metric_key: couchbase.default.disk_write_queue
+  - pattern: "%app%.%host%.couchbase.default.ep_bg_fetched"
+    metric_key: couchbase.default.ep_bg_fetched
+  - pattern: "%app%.%host%.couchbase.default.ep_cache_miss_rate"
+    metric_key: couchbase.default.ep_cache_miss_rate
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_2i_backoff"
+    metric_key: couchbase.default.ep_dcp_2i_backoff
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_2i_count"
+    metric_key: couchbase.default.ep_dcp_2i_count
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_2i_items_remaining"
+    metric_key: couchbase.default.ep_dcp_2i_items_remaining
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_2i_items_sent"
+    metric_key: couchbase.default.ep_dcp_2i_items_sent
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_2i_producer_count"
+    metric_key: couchbase.default.ep_dcp_2i_producer_count
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_2i_total_backlog_size"
+    metric_key: couchbase.default.ep_dcp_2i_total_backlog_size
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_2i_total_bytes"
+    metric_key: couchbase.default.ep_dcp_2i_total_bytes
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_fts_backoff"
+    metric_key: couchbase.default.ep_dcp_fts_backoff
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_fts_count"
+    metric_key: couchbase.default.ep_dcp_fts_count
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_fts_items_remaining"
+    metric_key: couchbase.default.ep_dcp_fts_items_remaining
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_fts_items_sent"
+    metric_key: couchbase.default.ep_dcp_fts_items_sent
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_fts_producer_count"
+    metric_key: couchbase.default.ep_dcp_fts_producer_count
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_fts_total_backlog_size"
+    metric_key: couchbase.default.ep_dcp_fts_total_backlog_size
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_fts_total_bytes"
+    metric_key: couchbase.default.ep_dcp_fts_total_bytes
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_other_backoff"
+    metric_key: couchbase.default.ep_dcp_other_backoff
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_other_count"
+    metric_key: couchbase.default.ep_dcp_other_count
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_other_items_remaining"
+    metric_key: couchbase.default.ep_dcp_other_items_remaining
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_other_items_sent"
+    metric_key: couchbase.default.ep_dcp_other_items_sent
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_other_producer_count"
+    metric_key: couchbase.default.ep_dcp_other_producer_count
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_other_total_backlog_size"
+    metric_key: couchbase.default.ep_dcp_other_total_backlog_size
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_other_total_bytes"
+    metric_key: couchbase.default.ep_dcp_other_total_bytes
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_replica_backoff"
+    metric_key: couchbase.default.ep_dcp_replica_backoff
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_replica_count"
+    metric_key: couchbase.default.ep_dcp_replica_count
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_replica_items_remaining"
+    metric_key: couchbase.default.ep_dcp_replica_items_remaining
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_replica_items_sent"
+    metric_key: couchbase.default.ep_dcp_replica_items_sent
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_replica_producer_count"
+    metric_key: couchbase.default.ep_dcp_replica_producer_count
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_replica_total_backlog_size"
+    metric_key: couchbase.default.ep_dcp_replica_total_backlog_size
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_replica_total_bytes"
+    metric_key: couchbase.default.ep_dcp_replica_total_bytes
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_views+indexes_backoff"
+    metric_key: couchbase.default.ep_dcp_views+indexes_backoff
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_views+indexes_count"
+    metric_key: couchbase.default.ep_dcp_views+indexes_count
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_views+indexes_items_remaining"
+    metric_key: couchbase.default.ep_dcp_views+indexes_items_remaining
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_views+indexes_items_sent"
+    metric_key: couchbase.default.ep_dcp_views+indexes_items_sent
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_views+indexes_producer_count"
+    metric_key: couchbase.default.ep_dcp_views+indexes_producer_count
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_views+indexes_total_backlog_size"
+    metric_key: couchbase.default.ep_dcp_views+indexes_total_backlog_size
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_views+indexes_total_bytes"
+    metric_key: couchbase.default.ep_dcp_views+indexes_total_bytes
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_views_backoff"
+    metric_key: couchbase.default.ep_dcp_views_backoff
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_views_count"
+    metric_key: couchbase.default.ep_dcp_views_count
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_views_items_remaining"
+    metric_key: couchbase.default.ep_dcp_views_items_remaining
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_views_items_sent"
+    metric_key: couchbase.default.ep_dcp_views_items_sent
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_views_producer_count"
+    metric_key: couchbase.default.ep_dcp_views_producer_count
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_views_total_backlog_size"
+    metric_key: couchbase.default.ep_dcp_views_total_backlog_size
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_views_total_bytes"
+    metric_key: couchbase.default.ep_dcp_views_total_bytes
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_xdcr_backoff"
+    metric_key: couchbase.default.ep_dcp_xdcr_backoff
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_xdcr_count"
+    metric_key: couchbase.default.ep_dcp_xdcr_count
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_xdcr_items_remaining"
+    metric_key: couchbase.default.ep_dcp_xdcr_items_remaining
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_xdcr_items_sent"
+    metric_key: couchbase.default.ep_dcp_xdcr_items_sent
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_xdcr_producer_count"
+    metric_key: couchbase.default.ep_dcp_xdcr_producer_count
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_xdcr_total_backlog_size"
+    metric_key: couchbase.default.ep_dcp_xdcr_total_backlog_size
+  - pattern: "%app%.%host%.couchbase.default.ep_dcp_xdcr_total_bytes"
+    metric_key: couchbase.default.ep_dcp_xdcr_total_bytes
+  - pattern: "%app%.%host%.couchbase.default.ep_diskqueue_drain"
+    metric_key: couchbase.default.ep_diskqueue_drain
+  - pattern: "%app%.%host%.couchbase.default.ep_diskqueue_fill"
+    metric_key: couchbase.default.ep_diskqueue_fill
+  - pattern: "%app%.%host%.couchbase.default.ep_diskqueue_items"
+    metric_key: couchbase.default.ep_diskqueue_items
+  - pattern: "%app%.%host%.couchbase.default.ep_flusher_todo"
+    metric_key: couchbase.default.ep_flusher_todo
+  - pattern: "%app%.%host%.couchbase.default.ep_item_commit_failed"
+    metric_key: couchbase.default.ep_item_commit_failed
+  - pattern: "%app%.%host%.couchbase.default.ep_kv_size"
+    metric_key: couchbase.default.ep_kv_size
+  - pattern: "%app%.%host%.couchbase.default.ep_max_size"
+    metric_key: couchbase.default.ep_max_size
+  - pattern: "%app%.%host%.couchbase.default.ep_mem_high_wat"
+    metric_key: couchbase.default.ep_mem_high_wat
+  - pattern: "%app%.%host%.couchbase.default.ep_mem_low_wat"
+    metric_key: couchbase.default.ep_mem_low_wat
+  - pattern: "%app%.%host%.couchbase.default.ep_meta_data_memory"
+    metric_key: couchbase.default.ep_meta_data_memory
+  - pattern: "%app%.%host%.couchbase.default.ep_num_non_resident"
+    metric_key: couchbase.default.ep_num_non_resident
+  - pattern: "%app%.%host%.couchbase.default.ep_num_ops_del_meta"
+    metric_key: couchbase.default.ep_num_ops_del_meta
+  - pattern: "%app%.%host%.couchbase.default.ep_num_ops_del_ret_meta"
+    metric_key: couchbase.default.ep_num_ops_del_ret_meta
+  - pattern: "%app%.%host%.couchbase.default.ep_num_ops_get_meta"
+    metric_key: couchbase.default.ep_num_ops_get_meta
+  - pattern: "%app%.%host%.couchbase.default.ep_num_ops_set_meta"
+    metric_key: couchbase.default.ep_num_ops_set_meta
+  - pattern: "%app%.%host%.couchbase.default.ep_num_ops_set_ret_meta"
+    metric_key: couchbase.default.ep_num_ops_set_ret_meta
+  - pattern: "%app%.%host%.couchbase.default.ep_num_value_ejects"
+    metric_key: couchbase.default.ep_num_value_ejects
+  - pattern: "%app%.%host%.couchbase.default.ep_oom_errors"
+    metric_key: couchbase.default.ep_oom_errors
+  - pattern: "%app%.%host%.couchbase.default.ep_ops_create"
+    metric_key: couchbase.default.ep_ops_create
+  - pattern: "%app%.%host%.couchbase.default.ep_ops_update"
+    metric_key: couchbase.default.ep_ops_update
+  - pattern: "%app%.%host%.couchbase.default.ep_overhead"
+    metric_key: couchbase.default.ep_overhead
+  - pattern: "%app%.%host%.couchbase.default.ep_queue_size"
+    metric_key: couchbase.default.ep_queue_size
+  - pattern: "%app%.%host%.couchbase.default.ep_resident_items_rate"
+    metric_key: couchbase.default.ep_resident_items_rate
+  - pattern: "%app%.%host%.couchbase.default.ep_tap_rebalance_count"
+    metric_key: couchbase.default.ep_tap_rebalance_count
+  - pattern: "%app%.%host%.couchbase.default.ep_tap_rebalance_qlen"
+    metric_key: couchbase.default.ep_tap_rebalance_qlen
+  - pattern: "%app%.%host%.couchbase.default.ep_tap_rebalance_queue_backfillremaining"
+    metric_key: couchbase.default.ep_tap_rebalance_queue_backfillremaining
+  - pattern: "%app%.%host%.couchbase.default.ep_tap_rebalance_queue_backoff"
+    metric_key: couchbase.default.ep_tap_rebalance_queue_backoff
+  - pattern: "%app%.%host%.couchbase.default.ep_tap_rebalance_queue_drain"
+    metric_key: couchbase.default.ep_tap_rebalance_queue_drain
+  - pattern: "%app%.%host%.couchbase.default.ep_tap_rebalance_queue_fill"
+    metric_key: couchbase.default.ep_tap_rebalance_queue_fill
+  - pattern: "%app%.%host%.couchbase.default.ep_tap_rebalance_queue_itemondisk"
+    metric_key: couchbase.default.ep_tap_rebalance_queue_itemondisk
+  - pattern: "%app%.%host%.couchbase.default.ep_tap_rebalance_total_backlog_size"
+    metric_key: couchbase.default.ep_tap_rebalance_total_backlog_size
+  - pattern: "%app%.%host%.couchbase.default.ep_tap_replica_count"
+    metric_key: couchbase.default.ep_tap_replica_count
+  - pattern: "%app%.%host%.couchbase.default.ep_tap_replica_qlen"
+    metric_key: couchbase.default.ep_tap_replica_qlen
+  - pattern: "%app%.%host%.couchbase.default.ep_tap_replica_queue_backfillremaining"
+    metric_key: couchbase.default.ep_tap_replica_queue_backfillremaining
+  - pattern: "%app%.%host%.couchbase.default.ep_tap_replica_queue_backoff"
+    metric_key: couchbase.default.ep_tap_replica_queue_backoff
+  - pattern: "%app%.%host%.couchbase.default.ep_tap_replica_queue_drain"
+    metric_key: couchbase.default.ep_tap_replica_queue_drain
+  - pattern: "%app%.%host%.couchbase.default.ep_tap_replica_queue_fill"
+    metric_key: couchbase.default.ep_tap_replica_queue_fill
+  - pattern: "%app%.%host%.couchbase.default.ep_tap_replica_queue_itemondisk"
+    metric_key: couchbase.default.ep_tap_replica_queue_itemondisk
+  - pattern: "%app%.%host%.couchbase.default.ep_tap_replica_total_backlog_size"
+    metric_key: couchbase.default.ep_tap_replica_total_backlog_size
+  - pattern: "%app%.%host%.couchbase.default.ep_tap_total_count"
+    metric_key: couchbase.default.ep_tap_total_count
+  - pattern: "%app%.%host%.couchbase.default.ep_tap_total_qlen"
+    metric_key: couchbase.default.ep_tap_total_qlen
+  - pattern: "%app%.%host%.couchbase.default.ep_tap_total_queue_backfillremaining"
+    metric_key: couchbase.default.ep_tap_total_queue_backfillremaining
+  - pattern: "%app%.%host%.couchbase.default.ep_tap_total_queue_backoff"
+    metric_key: couchbase.default.ep_tap_total_queue_backoff
+  - pattern: "%app%.%host%.couchbase.default.ep_tap_total_queue_drain"
+    metric_key: couchbase.default.ep_tap_total_queue_drain
+  - pattern: "%app%.%host%.couchbase.default.ep_tap_total_queue_fill"
+    metric_key: couchbase.default.ep_tap_total_queue_fill
+  - pattern: "%app%.%host%.couchbase.default.ep_tap_total_queue_itemondisk"
+    metric_key: couchbase.default.ep_tap_total_queue_itemondisk
+  - pattern: "%app%.%host%.couchbase.default.ep_tap_total_total_backlog_size"
+    metric_key: couchbase.default.ep_tap_total_total_backlog_size
+  - pattern: "%app%.%host%.couchbase.default.ep_tap_user_count"
+    metric_key: couchbase.default.ep_tap_user_count
+  - pattern: "%app%.%host%.couchbase.default.ep_tap_user_qlen"
+    metric_key: couchbase.default.ep_tap_user_qlen
+  - pattern: "%app%.%host%.couchbase.default.ep_tap_user_queue_backfillremaining"
+    metric_key: couchbase.default.ep_tap_user_queue_backfillremaining
+  - pattern: "%app%.%host%.couchbase.default.ep_tap_user_queue_backoff"
+    metric_key: couchbase.default.ep_tap_user_queue_backoff
+  - pattern: "%app%.%host%.couchbase.default.ep_tap_user_queue_drain"
+    metric_key: couchbase.default.ep_tap_user_queue_drain
+  - pattern: "%app%.%host%.couchbase.default.ep_tap_user_queue_fill"
+    metric_key: couchbase.default.ep_tap_user_queue_fill
+  - pattern: "%app%.%host%.couchbase.default.ep_tap_user_queue_itemondisk"
+    metric_key: couchbase.default.ep_tap_user_queue_itemondisk
+  - pattern: "%app%.%host%.couchbase.default.ep_tap_user_total_backlog_size"
+    metric_key: couchbase.default.ep_tap_user_total_backlog_size
+  - pattern: "%app%.%host%.couchbase.default.ep_tmp_oom_errors"
+    metric_key: couchbase.default.ep_tmp_oom_errors
+  - pattern: "%app%.%host%.couchbase.default.ep_vb_total"
+    metric_key: couchbase.default.ep_vb_total
+  - pattern: "%app%.%host%.couchbase.default.evictions"
+    metric_key: couchbase.default.evictions
+  - pattern: "%app%.%host%.couchbase.default.get_hits"
+    metric_key: couchbase.default.get_hits
+  - pattern: "%app%.%host%.couchbase.default.get_misses"
+    metric_key: couchbase.default.get_misses
+  - pattern: "%app%.%host%.couchbase.default.hibernated_requests"
+    metric_key: couchbase.default.hibernated_requests
+  - pattern: "%app%.%host%.couchbase.default.hibernated_waked"
+    metric_key: couchbase.default.hibernated_waked
+  - pattern: "%app%.%host%.couchbase.default.hit_ratio"
+    metric_key: couchbase.default.hit_ratio
+  - pattern: "%app%.%host%.couchbase.default.incr_hits"
+    metric_key: couchbase.default.incr_hits
+  - pattern: "%app%.%host%.couchbase.default.incr_misses"
+    metric_key: couchbase.default.incr_misses
+  - pattern: "%app%.%host%.couchbase.default.mem_actual_free"
+    metric_key: couchbase.default.mem_actual_free
+  - pattern: "%app%.%host%.couchbase.default.mem_actual_used"
+    metric_key: couchbase.default.mem_actual_used
+  - pattern: "%app%.%host%.couchbase.default.mem_free"
+    metric_key: couchbase.default.mem_free
+  - pattern: "%app%.%host%.couchbase.default.mem_total"
+    metric_key: couchbase.default.mem_total
+  - pattern: "%app%.%host%.couchbase.default.mem_used"
+    metric_key: couchbase.default.mem_used
+  - pattern: "%app%.%host%.couchbase.default.mem_used_sys"
+    metric_key: couchbase.default.mem_used_sys
+  - pattern: "%app%.%host%.couchbase.default.misses"
+    metric_key: couchbase.default.misses
+  - pattern: "%app%.%host%.couchbase.default.ops"
+    metric_key: couchbase.default.ops
+  - pattern: "%app%.%host%.couchbase.default.rest_requests"
+    metric_key: couchbase.default.rest_requests
+  - pattern: "%app%.%host%.couchbase.default.swap_total"
+    metric_key: couchbase.default.swap_total
+  - pattern: "%app%.%host%.couchbase.default.swap_used"
+    metric_key: couchbase.default.swap_used
+  - pattern: "%app%.%host%.couchbase.default.timestamp"
+    metric_key: couchbase.default.timestamp
+  - pattern: "%app%.%host%.couchbase.default.vb_active_eject"
+    metric_key: couchbase.default.vb_active_eject
+  - pattern: "%app%.%host%.couchbase.default.vb_active_itm_memory"
+    metric_key: couchbase.default.vb_active_itm_memory
+  - pattern: "%app%.%host%.couchbase.default.vb_active_meta_data_memory"
+    metric_key: couchbase.default.vb_active_meta_data_memory
+  - pattern: "%app%.%host%.couchbase.default.vb_active_num"
+    metric_key: couchbase.default.vb_active_num
+  - pattern: "%app%.%host%.couchbase.default.vb_active_num_non_resident"
+    metric_key: couchbase.default.vb_active_num_non_resident
+  - pattern: "%app%.%host%.couchbase.default.vb_active_ops_create"
+    metric_key: couchbase.default.vb_active_ops_create
+  - pattern: "%app%.%host%.couchbase.default.vb_active_ops_update"
+    metric_key: couchbase.default.vb_active_ops_update
+  - pattern: "%app%.%host%.couchbase.default.vb_active_queue_age"
+    metric_key: couchbase.default.vb_active_queue_age
+  - pattern: "%app%.%host%.couchbase.default.vb_active_queue_drain"
+    metric_key: couchbase.default.vb_active_queue_drain
+  - pattern: "%app%.%host%.couchbase.default.vb_active_queue_fill"
+    metric_key: couchbase.default.vb_active_queue_fill
+  - pattern: "%app%.%host%.couchbase.default.vb_active_queue_size"
+    metric_key: couchbase.default.vb_active_queue_size
+  - pattern: "%app%.%host%.couchbase.default.vb_active_resident_items_ratio"
+    metric_key: couchbase.default.vb_active_resident_items_ratio
+  - pattern: "%app%.%host%.couchbase.default.vb_avg_active_queue_age"
+    metric_key: couchbase.default.vb_avg_active_queue_age
+  - pattern: "%app%.%host%.couchbase.default.vb_avg_pending_queue_age"
+    metric_key: couchbase.default.vb_avg_pending_queue_age
+  - pattern: "%app%.%host%.couchbase.default.vb_avg_replica_queue_age"
+    metric_key: couchbase.default.vb_avg_replica_queue_age
+  - pattern: "%app%.%host%.couchbase.default.vb_avg_total_queue_age"
+    metric_key: couchbase.default.vb_avg_total_queue_age
+  - pattern: "%app%.%host%.couchbase.default.vb_pending_curr_items"
+    metric_key: couchbase.default.vb_pending_curr_items
+  - pattern: "%app%.%host%.couchbase.default.vb_pending_eject"
+    metric_key: couchbase.default.vb_pending_eject
+  - pattern: "%app%.%host%.couchbase.default.vb_pending_itm_memory"
+    metric_key: couchbase.default.vb_pending_itm_memory
+  - pattern: "%app%.%host%.couchbase.default.vb_pending_meta_data_memory"
+    metric_key: couchbase.default.vb_pending_meta_data_memory
+  - pattern: "%app%.%host%.couchbase.default.vb_pending_num"
+    metric_key: couchbase.default.vb_pending_num
+  - pattern: "%app%.%host%.couchbase.default.vb_pending_num_non_resident"
+    metric_key: couchbase.default.vb_pending_num_non_resident
+  - pattern: "%app%.%host%.couchbase.default.vb_pending_ops_create"
+    metric_key: couchbase.default.vb_pending_ops_create
+  - pattern: "%app%.%host%.couchbase.default.vb_pending_ops_update"
+    metric_key: couchbase.default.vb_pending_ops_update
+  - pattern: "%app%.%host%.couchbase.default.vb_pending_queue_age"
+    metric_key: couchbase.default.vb_pending_queue_age
+  - pattern: "%app%.%host%.couchbase.default.vb_pending_queue_drain"
+    metric_key: couchbase.default.vb_pending_queue_drain
+  - pattern: "%app%.%host%.couchbase.default.vb_pending_queue_fill"
+    metric_key: couchbase.default.vb_pending_queue_fill
+  - pattern: "%app%.%host%.couchbase.default.vb_pending_queue_size"
+    metric_key: couchbase.default.vb_pending_queue_size
+  - pattern: "%app%.%host%.couchbase.default.vb_pending_resident_items_ratio"
+    metric_key: couchbase.default.vb_pending_resident_items_ratio
+  - pattern: "%app%.%host%.couchbase.default.vb_replica_curr_items"
+    metric_key: couchbase.default.vb_replica_curr_items
+  - pattern: "%app%.%host%.couchbase.default.vb_replica_eject"
+    metric_key: couchbase.default.vb_replica_eject
+  - pattern: "%app%.%host%.couchbase.default.vb_replica_itm_memory"
+    metric_key: couchbase.default.vb_replica_itm_memory
+  - pattern: "%app%.%host%.couchbase.default.vb_replica_meta_data_memory"
+    metric_key: couchbase.default.vb_replica_meta_data_memory
+  - pattern: "%app%.%host%.couchbase.default.vb_replica_num"
+    metric_key: couchbase.default.vb_replica_num
+  - pattern: "%app%.%host%.couchbase.default.vb_replica_num_non_resident"
+    metric_key: couchbase.default.vb_replica_num_non_resident
+  - pattern: "%app%.%host%.couchbase.default.vb_replica_ops_create"
+    metric_key: couchbase.default.vb_replica_ops_create
+  - pattern: "%app%.%host%.couchbase.default.vb_replica_ops_update"
+    metric_key: couchbase.default.vb_replica_ops_update
+  - pattern: "%app%.%host%.couchbase.default.vb_replica_queue_age"
+    metric_key: couchbase.default.vb_replica_queue_age
+  - pattern: "%app%.%host%.couchbase.default.vb_replica_queue_drain"
+    metric_key: couchbase.default.vb_replica_queue_drain
+  - pattern: "%app%.%host%.couchbase.default.vb_replica_queue_fill"
+    metric_key: couchbase.default.vb_replica_queue_fill
+  - pattern: "%app%.%host%.couchbase.default.vb_replica_queue_size"
+    metric_key: couchbase.default.vb_replica_queue_size
+  - pattern: "%app%.%host%.couchbase.default.vb_replica_resident_items_ratio"
+    metric_key: couchbase.default.vb_replica_resident_items_ratio
+  - pattern: "%app%.%host%.couchbase.default.vb_total_queue_age"
+    metric_key: couchbase.default.vb_total_queue_age
+  - pattern: "%app%.%host%.couchbase.default.xdc_ops"
+    metric_key: couchbase.default.xdc_ops
+  - pattern: "%app%.%host%.couchbase.travel-sample.avg_bg_wait_time"
+    metric_key: couchbase.travel-sample.avg_bg_wait_time
+  - pattern: "%app%.%host%.couchbase.travel-sample.avg_disk_commit_time"
+    metric_key: couchbase.travel-sample.avg_disk_commit_time
+  - pattern: "%app%.%host%.couchbase.travel-sample.avg_disk_update_time"
+    metric_key: couchbase.travel-sample.avg_disk_update_time
+  - pattern: "%app%.%host%.couchbase.travel-sample.bg_wait_count"
+    metric_key: couchbase.travel-sample.bg_wait_count
+  - pattern: "%app%.%host%.couchbase.travel-sample.bg_wait_total"
+    metric_key: couchbase.travel-sample.bg_wait_total
+  - pattern: "%app%.%host%.couchbase.travel-sample.bytes_read"
+    metric_key: couchbase.travel-sample.bytes_read
+  - pattern: "%app%.%host%.couchbase.travel-sample.bytes_written"
+    metric_key: couchbase.travel-sample.bytes_written
+  - pattern: "%app%.%host%.couchbase.travel-sample.cas_badval"
+    metric_key: couchbase.travel-sample.cas_badval
+  - pattern: "%app%.%host%.couchbase.travel-sample.cas_hits"
+    metric_key: couchbase.travel-sample.cas_hits
+  - pattern: "%app%.%host%.couchbase.travel-sample.cas_misses"
+    metric_key: couchbase.travel-sample.cas_misses
+  - pattern: "%app%.%host%.couchbase.travel-sample.cmd_get"
+    metric_key: couchbase.travel-sample.cmd_get
+  - pattern: "%app%.%host%.couchbase.travel-sample.cmd_set"
+    metric_key: couchbase.travel-sample.cmd_set
+  - pattern: "%app%.%host%.couchbase.travel-sample.couch_docs_actual_disk_size"
+    metric_key: couchbase.travel-sample.couch_docs_actual_disk_size
+  - pattern: "%app%.%host%.couchbase.travel-sample.couch_docs_data_size"
+    metric_key: couchbase.travel-sample.couch_docs_data_size
+  - pattern: "%app%.%host%.couchbase.travel-sample.couch_docs_disk_size"
+    metric_key: couchbase.travel-sample.couch_docs_disk_size
+  - pattern: "%app%.%host%.couchbase.travel-sample.couch_docs_fragmentation"
+    metric_key: couchbase.travel-sample.couch_docs_fragmentation
+  - pattern: "%app%.%host%.couchbase.travel-sample.couch_spatial_data_size"
+    metric_key: couchbase.travel-sample.couch_spatial_data_size
+  - pattern: "%app%.%host%.couchbase.travel-sample.couch_spatial_disk_size"
+    metric_key: couchbase.travel-sample.couch_spatial_disk_size
+  - pattern: "%app%.%host%.couchbase.travel-sample.couch_spatial_ops"
+    metric_key: couchbase.travel-sample.couch_spatial_ops
+  - pattern: "%app%.%host%.couchbase.travel-sample.couch_total_disk_size"
+    metric_key: couchbase.travel-sample.couch_total_disk_size
+  - pattern: "%app%.%host%.couchbase.travel-sample.couch_views_actual_disk_size"
+    metric_key: couchbase.travel-sample.couch_views_actual_disk_size
+  - pattern: "%app%.%host%.couchbase.travel-sample.couch_views_data_size"
+    metric_key: couchbase.travel-sample.couch_views_data_size
+  - pattern: "%app%.%host%.couchbase.travel-sample.couch_views_disk_size"
+    metric_key: couchbase.travel-sample.couch_views_disk_size
+  - pattern: "%app%.%host%.couchbase.travel-sample.couch_views_fragmentation"
+    metric_key: couchbase.travel-sample.couch_views_fragmentation
+  - pattern: "%app%.%host%.couchbase.travel-sample.couch_views_ops"
+    metric_key: couchbase.travel-sample.couch_views_ops
+  - pattern: "%app%.%host%.couchbase.travel-sample.cpu_idle_ms"
+    metric_key: couchbase.travel-sample.cpu_idle_ms
+  - pattern: "%app%.%host%.couchbase.travel-sample.cpu_local_ms"
+    metric_key: couchbase.travel-sample.cpu_local_ms
+  - pattern: "%app%.%host%.couchbase.travel-sample.cpu_utilization_rate"
+    metric_key: couchbase.travel-sample.cpu_utilization_rate
+  - pattern: "%app%.%host%.couchbase.travel-sample.curr_connections"
+    metric_key: couchbase.travel-sample.curr_connections
+  - pattern: "%app%.%host%.couchbase.travel-sample.curr_items"
+    metric_key: couchbase.travel-sample.curr_items
+  - pattern: "%app%.%host%.couchbase.travel-sample.curr_items_tot"
+    metric_key: couchbase.travel-sample.curr_items_tot
+  - pattern: "%app%.%host%.couchbase.travel-sample.decr_hits"
+    metric_key: couchbase.travel-sample.decr_hits
+  - pattern: "%app%.%host%.couchbase.travel-sample.decr_misses"
+    metric_key: couchbase.travel-sample.decr_misses
+  - pattern: "%app%.%host%.couchbase.travel-sample.delete_hits"
+    metric_key: couchbase.travel-sample.delete_hits
+  - pattern: "%app%.%host%.couchbase.travel-sample.delete_misses"
+    metric_key: couchbase.travel-sample.delete_misses
+  - pattern: "%app%.%host%.couchbase.travel-sample.disk_commit_count"
+    metric_key: couchbase.travel-sample.disk_commit_count
+  - pattern: "%app%.%host%.couchbase.travel-sample.disk_commit_total"
+    metric_key: couchbase.travel-sample.disk_commit_total
+  - pattern: "%app%.%host%.couchbase.travel-sample.disk_update_count"
+    metric_key: couchbase.travel-sample.disk_update_count
+  - pattern: "%app%.%host%.couchbase.travel-sample.disk_update_total"
+    metric_key: couchbase.travel-sample.disk_update_total
+  - pattern: "%app%.%host%.couchbase.travel-sample.disk_write_queue"
+    metric_key: couchbase.travel-sample.disk_write_queue
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_bg_fetched"
+    metric_key: couchbase.travel-sample.ep_bg_fetched
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_cache_miss_rate"
+    metric_key: couchbase.travel-sample.ep_cache_miss_rate
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_2i_backoff"
+    metric_key: couchbase.travel-sample.ep_dcp_2i_backoff
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_2i_count"
+    metric_key: couchbase.travel-sample.ep_dcp_2i_count
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_2i_items_remaining"
+    metric_key: couchbase.travel-sample.ep_dcp_2i_items_remaining
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_2i_items_sent"
+    metric_key: couchbase.travel-sample.ep_dcp_2i_items_sent
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_2i_producer_count"
+    metric_key: couchbase.travel-sample.ep_dcp_2i_producer_count
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_2i_total_backlog_size"
+    metric_key: couchbase.travel-sample.ep_dcp_2i_total_backlog_size
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_2i_total_bytes"
+    metric_key: couchbase.travel-sample.ep_dcp_2i_total_bytes
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_fts_backoff"
+    metric_key: couchbase.travel-sample.ep_dcp_fts_backoff
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_fts_count"
+    metric_key: couchbase.travel-sample.ep_dcp_fts_count
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_fts_items_remaining"
+    metric_key: couchbase.travel-sample.ep_dcp_fts_items_remaining
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_fts_items_sent"
+    metric_key: couchbase.travel-sample.ep_dcp_fts_items_sent
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_fts_producer_count"
+    metric_key: couchbase.travel-sample.ep_dcp_fts_producer_count
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_fts_total_backlog_size"
+    metric_key: couchbase.travel-sample.ep_dcp_fts_total_backlog_size
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_fts_total_bytes"
+    metric_key: couchbase.travel-sample.ep_dcp_fts_total_bytes
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_other_backoff"
+    metric_key: couchbase.travel-sample.ep_dcp_other_backoff
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_other_count"
+    metric_key: couchbase.travel-sample.ep_dcp_other_count
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_other_items_remaining"
+    metric_key: couchbase.travel-sample.ep_dcp_other_items_remaining
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_other_items_sent"
+    metric_key: couchbase.travel-sample.ep_dcp_other_items_sent
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_other_producer_count"
+    metric_key: couchbase.travel-sample.ep_dcp_other_producer_count
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_other_total_backlog_size"
+    metric_key: couchbase.travel-sample.ep_dcp_other_total_backlog_size
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_other_total_bytes"
+    metric_key: couchbase.travel-sample.ep_dcp_other_total_bytes
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_replica_backoff"
+    metric_key: couchbase.travel-sample.ep_dcp_replica_backoff
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_replica_count"
+    metric_key: couchbase.travel-sample.ep_dcp_replica_count
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_replica_items_remaining"
+    metric_key: couchbase.travel-sample.ep_dcp_replica_items_remaining
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_replica_items_sent"
+    metric_key: couchbase.travel-sample.ep_dcp_replica_items_sent
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_replica_producer_count"
+    metric_key: couchbase.travel-sample.ep_dcp_replica_producer_count
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_replica_total_backlog_size"
+    metric_key: couchbase.travel-sample.ep_dcp_replica_total_backlog_size
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_replica_total_bytes"
+    metric_key: couchbase.travel-sample.ep_dcp_replica_total_bytes
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_views+indexes_backoff"
+    metric_key: couchbase.travel-sample.ep_dcp_views+indexes_backoff
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_views+indexes_count"
+    metric_key: couchbase.travel-sample.ep_dcp_views+indexes_count
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_views+indexes_items_remaining"
+    metric_key: couchbase.travel-sample.ep_dcp_views+indexes_items_remaining
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_views+indexes_items_sent"
+    metric_key: couchbase.travel-sample.ep_dcp_views+indexes_items_sent
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_views+indexes_producer_count"
+    metric_key: couchbase.travel-sample.ep_dcp_views+indexes_producer_count
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_views+indexes_total_backlog_size"
+    metric_key: couchbase.travel-sample.ep_dcp_views+indexes_total_backlog_size
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_views+indexes_total_bytes"
+    metric_key: couchbase.travel-sample.ep_dcp_views+indexes_total_bytes
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_views_backoff"
+    metric_key: couchbase.travel-sample.ep_dcp_views_backoff
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_views_count"
+    metric_key: couchbase.travel-sample.ep_dcp_views_count
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_views_items_remaining"
+    metric_key: couchbase.travel-sample.ep_dcp_views_items_remaining
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_views_items_sent"
+    metric_key: couchbase.travel-sample.ep_dcp_views_items_sent
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_views_producer_count"
+    metric_key: couchbase.travel-sample.ep_dcp_views_producer_count
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_views_total_backlog_size"
+    metric_key: couchbase.travel-sample.ep_dcp_views_total_backlog_size
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_views_total_bytes"
+    metric_key: couchbase.travel-sample.ep_dcp_views_total_bytes
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_xdcr_backoff"
+    metric_key: couchbase.travel-sample.ep_dcp_xdcr_backoff
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_xdcr_count"
+    metric_key: couchbase.travel-sample.ep_dcp_xdcr_count
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_xdcr_items_remaining"
+    metric_key: couchbase.travel-sample.ep_dcp_xdcr_items_remaining
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_xdcr_items_sent"
+    metric_key: couchbase.travel-sample.ep_dcp_xdcr_items_sent
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_xdcr_producer_count"
+    metric_key: couchbase.travel-sample.ep_dcp_xdcr_producer_count
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_xdcr_total_backlog_size"
+    metric_key: couchbase.travel-sample.ep_dcp_xdcr_total_backlog_size
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_dcp_xdcr_total_bytes"
+    metric_key: couchbase.travel-sample.ep_dcp_xdcr_total_bytes
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_diskqueue_drain"
+    metric_key: couchbase.travel-sample.ep_diskqueue_drain
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_diskqueue_fill"
+    metric_key: couchbase.travel-sample.ep_diskqueue_fill
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_diskqueue_items"
+    metric_key: couchbase.travel-sample.ep_diskqueue_items
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_flusher_todo"
+    metric_key: couchbase.travel-sample.ep_flusher_todo
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_item_commit_failed"
+    metric_key: couchbase.travel-sample.ep_item_commit_failed
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_kv_size"
+    metric_key: couchbase.travel-sample.ep_kv_size
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_max_size"
+    metric_key: couchbase.travel-sample.ep_max_size
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_mem_high_wat"
+    metric_key: couchbase.travel-sample.ep_mem_high_wat
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_mem_low_wat"
+    metric_key: couchbase.travel-sample.ep_mem_low_wat
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_meta_data_memory"
+    metric_key: couchbase.travel-sample.ep_meta_data_memory
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_num_non_resident"
+    metric_key: couchbase.travel-sample.ep_num_non_resident
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_num_ops_del_meta"
+    metric_key: couchbase.travel-sample.ep_num_ops_del_meta
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_num_ops_del_ret_meta"
+    metric_key: couchbase.travel-sample.ep_num_ops_del_ret_meta
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_num_ops_get_meta"
+    metric_key: couchbase.travel-sample.ep_num_ops_get_meta
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_num_ops_set_meta"
+    metric_key: couchbase.travel-sample.ep_num_ops_set_meta
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_num_ops_set_ret_meta"
+    metric_key: couchbase.travel-sample.ep_num_ops_set_ret_meta
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_num_value_ejects"
+    metric_key: couchbase.travel-sample.ep_num_value_ejects
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_oom_errors"
+    metric_key: couchbase.travel-sample.ep_oom_errors
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_ops_create"
+    metric_key: couchbase.travel-sample.ep_ops_create
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_ops_update"
+    metric_key: couchbase.travel-sample.ep_ops_update
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_overhead"
+    metric_key: couchbase.travel-sample.ep_overhead
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_queue_size"
+    metric_key: couchbase.travel-sample.ep_queue_size
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_resident_items_rate"
+    metric_key: couchbase.travel-sample.ep_resident_items_rate
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_tap_rebalance_count"
+    metric_key: couchbase.travel-sample.ep_tap_rebalance_count
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_tap_rebalance_qlen"
+    metric_key: couchbase.travel-sample.ep_tap_rebalance_qlen
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_tap_rebalance_queue_backfillremaining"
+    metric_key: couchbase.travel-sample.ep_tap_rebalance_queue_backfillremaining
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_tap_rebalance_queue_backoff"
+    metric_key: couchbase.travel-sample.ep_tap_rebalance_queue_backoff
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_tap_rebalance_queue_drain"
+    metric_key: couchbase.travel-sample.ep_tap_rebalance_queue_drain
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_tap_rebalance_queue_fill"
+    metric_key: couchbase.travel-sample.ep_tap_rebalance_queue_fill
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_tap_rebalance_queue_itemondisk"
+    metric_key: couchbase.travel-sample.ep_tap_rebalance_queue_itemondisk
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_tap_rebalance_total_backlog_size"
+    metric_key: couchbase.travel-sample.ep_tap_rebalance_total_backlog_size
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_tap_replica_count"
+    metric_key: couchbase.travel-sample.ep_tap_replica_count
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_tap_replica_qlen"
+    metric_key: couchbase.travel-sample.ep_tap_replica_qlen
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_tap_replica_queue_backfillremaining"
+    metric_key: couchbase.travel-sample.ep_tap_replica_queue_backfillremaining
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_tap_replica_queue_backoff"
+    metric_key: couchbase.travel-sample.ep_tap_replica_queue_backoff
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_tap_replica_queue_drain"
+    metric_key: couchbase.travel-sample.ep_tap_replica_queue_drain
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_tap_replica_queue_fill"
+    metric_key: couchbase.travel-sample.ep_tap_replica_queue_fill
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_tap_replica_queue_itemondisk"
+    metric_key: couchbase.travel-sample.ep_tap_replica_queue_itemondisk
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_tap_replica_total_backlog_size"
+    metric_key: couchbase.travel-sample.ep_tap_replica_total_backlog_size
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_tap_total_count"
+    metric_key: couchbase.travel-sample.ep_tap_total_count
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_tap_total_qlen"
+    metric_key: couchbase.travel-sample.ep_tap_total_qlen
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_tap_total_queue_backfillremaining"
+    metric_key: couchbase.travel-sample.ep_tap_total_queue_backfillremaining
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_tap_total_queue_backoff"
+    metric_key: couchbase.travel-sample.ep_tap_total_queue_backoff
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_tap_total_queue_drain"
+    metric_key: couchbase.travel-sample.ep_tap_total_queue_drain
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_tap_total_queue_fill"
+    metric_key: couchbase.travel-sample.ep_tap_total_queue_fill
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_tap_total_queue_itemondisk"
+    metric_key: couchbase.travel-sample.ep_tap_total_queue_itemondisk
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_tap_total_total_backlog_size"
+    metric_key: couchbase.travel-sample.ep_tap_total_total_backlog_size
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_tap_user_count"
+    metric_key: couchbase.travel-sample.ep_tap_user_count
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_tap_user_qlen"
+    metric_key: couchbase.travel-sample.ep_tap_user_qlen
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_tap_user_queue_backfillremaining"
+    metric_key: couchbase.travel-sample.ep_tap_user_queue_backfillremaining
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_tap_user_queue_backoff"
+    metric_key: couchbase.travel-sample.ep_tap_user_queue_backoff
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_tap_user_queue_drain"
+    metric_key: couchbase.travel-sample.ep_tap_user_queue_drain
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_tap_user_queue_fill"
+    metric_key: couchbase.travel-sample.ep_tap_user_queue_fill
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_tap_user_queue_itemondisk"
+    metric_key: couchbase.travel-sample.ep_tap_user_queue_itemondisk
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_tap_user_total_backlog_size"
+    metric_key: couchbase.travel-sample.ep_tap_user_total_backlog_size
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_tmp_oom_errors"
+    metric_key: couchbase.travel-sample.ep_tmp_oom_errors
+  - pattern: "%app%.%host%.couchbase.travel-sample.ep_vb_total"
+    metric_key: couchbase.travel-sample.ep_vb_total
+  - pattern: "%app%.%host%.couchbase.travel-sample.evictions"
+    metric_key: couchbase.travel-sample.evictions
+  - pattern: "%app%.%host%.couchbase.travel-sample.get_hits"
+    metric_key: couchbase.travel-sample.get_hits
+  - pattern: "%app%.%host%.couchbase.travel-sample.get_misses"
+    metric_key: couchbase.travel-sample.get_misses
+  - pattern: "%app%.%host%.couchbase.travel-sample.hibernated_requests"
+    metric_key: couchbase.travel-sample.hibernated_requests
+  - pattern: "%app%.%host%.couchbase.travel-sample.hibernated_waked"
+    metric_key: couchbase.travel-sample.hibernated_waked
+  - pattern: "%app%.%host%.couchbase.travel-sample.hit_ratio"
+    metric_key: couchbase.travel-sample.hit_ratio
+  - pattern: "%app%.%host%.couchbase.travel-sample.incr_hits"
+    metric_key: couchbase.travel-sample.incr_hits
+  - pattern: "%app%.%host%.couchbase.travel-sample.incr_misses"
+    metric_key: couchbase.travel-sample.incr_misses
+  - pattern: "%app%.%host%.couchbase.travel-sample.mem_actual_free"
+    metric_key: couchbase.travel-sample.mem_actual_free
+  - pattern: "%app%.%host%.couchbase.travel-sample.mem_actual_used"
+    metric_key: couchbase.travel-sample.mem_actual_used
+  - pattern: "%app%.%host%.couchbase.travel-sample.mem_free"
+    metric_key: couchbase.travel-sample.mem_free
+  - pattern: "%app%.%host%.couchbase.travel-sample.mem_total"
+    metric_key: couchbase.travel-sample.mem_total
+  - pattern: "%app%.%host%.couchbase.travel-sample.mem_used"
+    metric_key: couchbase.travel-sample.mem_used
+  - pattern: "%app%.%host%.couchbase.travel-sample.mem_used_sys"
+    metric_key: couchbase.travel-sample.mem_used_sys
+  - pattern: "%app%.%host%.couchbase.travel-sample.misses"
+    metric_key: couchbase.travel-sample.misses
+  - pattern: "%app%.%host%.couchbase.travel-sample.ops"
+    metric_key: couchbase.travel-sample.ops
+  - pattern: "%app%.%host%.couchbase.travel-sample.rest_requests"
+    metric_key: couchbase.travel-sample.rest_requests
+  - pattern: "%app%.%host%.couchbase.travel-sample.spatial.ce5bd2776798930ea5093a18742d4bbf.accesses"
+    metric_key: couchbase.travel-sample.spatial.ce5bd2776798930ea5093a18742d4bbf.accesses
+  - pattern: "%app%.%host%.couchbase.travel-sample.spatial.ce5bd2776798930ea5093a18742d4bbf.data_size"
+    metric_key: couchbase.travel-sample.spatial.ce5bd2776798930ea5093a18742d4bbf.data_size
+  - pattern: "%app%.%host%.couchbase.travel-sample.spatial.ce5bd2776798930ea5093a18742d4bbf.disk_size"
+    metric_key: couchbase.travel-sample.spatial.ce5bd2776798930ea5093a18742d4bbf.disk_size
+  - pattern: "%app%.%host%.couchbase.travel-sample.swap_total"
+    metric_key: couchbase.travel-sample.swap_total
+  - pattern: "%app%.%host%.couchbase.travel-sample.swap_used"
+    metric_key: couchbase.travel-sample.swap_used
+  - pattern: "%app%.%host%.couchbase.travel-sample.timestamp"
+    metric_key: couchbase.travel-sample.timestamp
+  - pattern: "%app%.%host%.couchbase.travel-sample.vb_active_eject"
+    metric_key: couchbase.travel-sample.vb_active_eject
+  - pattern: "%app%.%host%.couchbase.travel-sample.vb_active_itm_memory"
+    metric_key: couchbase.travel-sample.vb_active_itm_memory
+  - pattern: "%app%.%host%.couchbase.travel-sample.vb_active_meta_data_memory"
+    metric_key: couchbase.travel-sample.vb_active_meta_data_memory
+  - pattern: "%app%.%host%.couchbase.travel-sample.vb_active_num"
+    metric_key: couchbase.travel-sample.vb_active_num
+  - pattern: "%app%.%host%.couchbase.travel-sample.vb_active_num_non_resident"
+    metric_key: couchbase.travel-sample.vb_active_num_non_resident
+  - pattern: "%app%.%host%.couchbase.travel-sample.vb_active_ops_create"
+    metric_key: couchbase.travel-sample.vb_active_ops_create
+  - pattern: "%app%.%host%.couchbase.travel-sample.vb_active_ops_update"
+    metric_key: couchbase.travel-sample.vb_active_ops_update
+  - pattern: "%app%.%host%.couchbase.travel-sample.vb_active_queue_age"
+    metric_key: couchbase.travel-sample.vb_active_queue_age
+  - pattern: "%app%.%host%.couchbase.travel-sample.vb_active_queue_drain"
+    metric_key: couchbase.travel-sample.vb_active_queue_drain
+  - pattern: "%app%.%host%.couchbase.travel-sample.vb_active_queue_fill"
+    metric_key: couchbase.travel-sample.vb_active_queue_fill
+  - pattern: "%app%.%host%.couchbase.travel-sample.vb_active_queue_size"
+    metric_key: couchbase.travel-sample.vb_active_queue_size
+  - pattern: "%app%.%host%.couchbase.travel-sample.vb_active_resident_items_ratio"
+    metric_key: couchbase.travel-sample.vb_active_resident_items_ratio
+  - pattern: "%app%.%host%.couchbase.travel-sample.vb_avg_active_queue_age"
+    metric_key: couchbase.travel-sample.vb_avg_active_queue_age
+  - pattern: "%app%.%host%.couchbase.travel-sample.vb_avg_pending_queue_age"
+    metric_key: couchbase.travel-sample.vb_avg_pending_queue_age
+  - pattern: "%app%.%host%.couchbase.travel-sample.vb_avg_replica_queue_age"
+    metric_key: couchbase.travel-sample.vb_avg_replica_queue_age
+  - pattern: "%app%.%host%.couchbase.travel-sample.vb_avg_total_queue_age"
+    metric_key: couchbase.travel-sample.vb_avg_total_queue_age
+  - pattern: "%app%.%host%.couchbase.travel-sample.vb_pending_curr_items"
+    metric_key: couchbase.travel-sample.vb_pending_curr_items
+  - pattern: "%app%.%host%.couchbase.travel-sample.vb_pending_eject"
+    metric_key: couchbase.travel-sample.vb_pending_eject
+  - pattern: "%app%.%host%.couchbase.travel-sample.vb_pending_itm_memory"
+    metric_key: couchbase.travel-sample.vb_pending_itm_memory
+  - pattern: "%app%.%host%.couchbase.travel-sample.vb_pending_meta_data_memory"
+    metric_key: couchbase.travel-sample.vb_pending_meta_data_memory
+  - pattern: "%app%.%host%.couchbase.travel-sample.vb_pending_num"
+    metric_key: couchbase.travel-sample.vb_pending_num
+  - pattern: "%app%.%host%.couchbase.travel-sample.vb_pending_num_non_resident"
+    metric_key: couchbase.travel-sample.vb_pending_num_non_resident
+  - pattern: "%app%.%host%.couchbase.travel-sample.vb_pending_ops_create"
+    metric_key: couchbase.travel-sample.vb_pending_ops_create
+  - pattern: "%app%.%host%.couchbase.travel-sample.vb_pending_ops_update"
+    metric_key: couchbase.travel-sample.vb_pending_ops_update
+  - pattern: "%app%.%host%.couchbase.travel-sample.vb_pending_queue_age"
+    metric_key: couchbase.travel-sample.vb_pending_queue_age
+  - pattern: "%app%.%host%.couchbase.travel-sample.vb_pending_queue_drain"
+    metric_key: couchbase.travel-sample.vb_pending_queue_drain
+  - pattern: "%app%.%host%.couchbase.travel-sample.vb_pending_queue_fill"
+    metric_key: couchbase.travel-sample.vb_pending_queue_fill
+  - pattern: "%app%.%host%.couchbase.travel-sample.vb_pending_queue_size"
+    metric_key: couchbase.travel-sample.vb_pending_queue_size
+  - pattern: "%app%.%host%.couchbase.travel-sample.vb_pending_resident_items_ratio"
+    metric_key: couchbase.travel-sample.vb_pending_resident_items_ratio
+  - pattern: "%app%.%host%.couchbase.travel-sample.vb_replica_curr_items"
+    metric_key: couchbase.travel-sample.vb_replica_curr_items
+  - pattern: "%app%.%host%.couchbase.travel-sample.vb_replica_eject"
+    metric_key: couchbase.travel-sample.vb_replica_eject
+  - pattern: "%app%.%host%.couchbase.travel-sample.vb_replica_itm_memory"
+    metric_key: couchbase.travel-sample.vb_replica_itm_memory
+  - pattern: "%app%.%host%.couchbase.travel-sample.vb_replica_meta_data_memory"
+    metric_key: couchbase.travel-sample.vb_replica_meta_data_memory
+  - pattern: "%app%.%host%.couchbase.travel-sample.vb_replica_num"
+    metric_key: couchbase.travel-sample.vb_replica_num
+  - pattern: "%app%.%host%.couchbase.travel-sample.vb_replica_num_non_resident"
+    metric_key: couchbase.travel-sample.vb_replica_num_non_resident
+  - pattern: "%app%.%host%.couchbase.travel-sample.vb_replica_ops_create"
+    metric_key: couchbase.travel-sample.vb_replica_ops_create
+  - pattern: "%app%.%host%.couchbase.travel-sample.vb_replica_ops_update"
+    metric_key: couchbase.travel-sample.vb_replica_ops_update
+  - pattern: "%app%.%host%.couchbase.travel-sample.vb_replica_queue_age"
+    metric_key: couchbase.travel-sample.vb_replica_queue_age
+  - pattern: "%app%.%host%.couchbase.travel-sample.vb_replica_queue_drain"
+    metric_key: couchbase.travel-sample.vb_replica_queue_drain
+  - pattern: "%app%.%host%.couchbase.travel-sample.vb_replica_queue_fill"
+    metric_key: couchbase.travel-sample.vb_replica_queue_fill
+  - pattern: "%app%.%host%.couchbase.travel-sample.vb_replica_queue_size"
+    metric_key: couchbase.travel-sample.vb_replica_queue_size
+  - pattern: "%app%.%host%.couchbase.travel-sample.vb_replica_resident_items_ratio"
+    metric_key: couchbase.travel-sample.vb_replica_resident_items_ratio
+  - pattern: "%app%.%host%.couchbase.travel-sample.vb_total_queue_age"
+    metric_key: couchbase.travel-sample.vb_total_queue_age
+  - pattern: "%app%.%host%.couchbase.travel-sample.views.a52eab6056871e78f2296dc6d1f4aaaf.accesses"
+    metric_key: couchbase.travel-sample.views.a52eab6056871e78f2296dc6d1f4aaaf.accesses
+  - pattern: "%app%.%host%.couchbase.travel-sample.views.a52eab6056871e78f2296dc6d1f4aaaf.data_size"
+    metric_key: couchbase.travel-sample.views.a52eab6056871e78f2296dc6d1f4aaaf.data_size
+  - pattern: "%app%.%host%.couchbase.travel-sample.views.a52eab6056871e78f2296dc6d1f4aaaf.disk_size"
+    metric_key: couchbase.travel-sample.views.a52eab6056871e78f2296dc6d1f4aaaf.disk_size
+  - pattern: "%app%.%host%.couchbase.travel-sample.xdc_ops"
+    metric_key: couchbase.travel-sample.xdc_ops
