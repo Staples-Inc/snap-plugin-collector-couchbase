@@ -47,9 +47,7 @@ func (p *CouchBasePlugin) GetConfigPolicy() (*cpolicy.ConfigPolicy, error) {
 	return c, nil
 }
 
-// CollectMetrics finds required request ids required to collect given metrics,
-// asks collector service for metrics associated with these calls and returns
-// requested metrics. Error is returned when metric collection failed or plugin
+// Collect requested metrics. Error is returned when metric collection failed or plugin
 // initialization was unsuccessful.
 func (p *CouchBasePlugin) CollectMetrics(mts []plugin.MetricType) ([]plugin.MetricType, error) {
 

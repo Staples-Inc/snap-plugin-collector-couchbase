@@ -31,9 +31,8 @@ type metricCollector struct {
 	samples metrictap
 }
 
-// Collect performs given set of calls (indicated by true value in metrics map).
-// returns map of metric values (accessible by metric name). If any of requested
-// calls fail error is returned.
+// Collect returns map of metric values (accessible by metric name).
+// If any of requested calls fail error is returned.
 func (mc *metricCollector) Collect() (map[string]interface{}, error) {
 	samples, err := mc.samples.GetSamples()
 	if err != nil {
