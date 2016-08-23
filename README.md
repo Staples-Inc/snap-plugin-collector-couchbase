@@ -1,18 +1,6 @@
 # Couchbase Collector Plugin
 Intelsdi-x snap plugin for couchbase node/bucket monitoring. It uses couchbase's provided RESTAPI.  
 
-## TODO
-- [ ] Implement config options for time intervals for /stats
-- [ ] Test with muti node
-
-## Source structure
-```
-main.go
-couchbase/
-  |  collector.go
-  |  couchbase.go
-```
-
 ### Snap version requires at least
 v0.14.0-beta
 
@@ -30,6 +18,14 @@ Staples, Inc.
 Snap is Open Source software released under the Apache 2.0 License.
 
 ## Documentation
+
+### Source structure
+```
+main.go
+couchbase/
+  |  collector.go
+  |  couchbase.go
+```
 
 ### Collected Metrics
 This plugin as the ability to collect the following metrics:
