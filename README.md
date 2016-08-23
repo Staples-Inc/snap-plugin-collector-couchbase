@@ -1,6 +1,10 @@
 # Couchbase Collector Plugin
 Intelsdi-x snap plugin for couchbase node/bucket monitoring. It uses couchbase's provided RESTAPI.  
 
+## TODO
+- [ ] Implement config options for time intervals for /stats
+- [ ] Test with muti node
+
 ## Source structure
 ```
 main.go
