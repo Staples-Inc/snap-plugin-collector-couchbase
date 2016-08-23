@@ -29,6 +29,13 @@ Staples, Inc.
 ### License
 Snap is Open Source software released under the Apache 2.0 License.
 
+## Documentation
+
+### Collected Metrics
+This plugin as the ability to collect the following metrics:
+
+#### Buckets
+
 Namespace | Data Type | Description
 ----------|-----------|----------------------
 /staples/couchbase/{name}/avg_bg_wait_time | int | exssss 
