@@ -23,8 +23,8 @@ const (
 type CouchBasePlugin struct {
 	// is initialized
 	initialized bool
-	// mapping of metric namespaces and type
-	callDiscovery map[string]int
+	// discovered metric namespaces
+	callDiscovery []string
 	// an interface for the metrics collector
 	couchbase collector
 }
@@ -34,10 +34,9 @@ func Meta() *plugin.PluginMeta {
 	return plugin.NewPluginMeta(Name, Version, Type, []string{plugin.SnapGOBContentType}, []string{plugin.SnapGOBContentType})
 }
 
-// New returns initialized instance of NetStat Plugin collector
+// New returns initialized instance of Plugin collector
 func New() *CouchBasePlugin {
 	self := new(CouchBasePlugin)
-	self.callDiscovery = map[string]int{}
 	return self
 }
 
@@ -97,7 +96,7 @@ func (p *CouchBasePlugin) GetMetricTypes(cfg plugin.ConfigType) ([]plugin.Metric
 
 	mts := []plugin.MetricType{}
 
-	for k := range p.callDiscovery {
+	for _, k := range p.callDiscovery {
 		mts = append(mts, plugin.MetricType{Namespace_: core.NewNamespace(makeName(k)...)})
 	}
 	return mts, nil
@@ -125,8 +124,7 @@ func (p *CouchBasePlugin) init(cfg interface{}) error {
 	}
 
 	for _, m := range metrics {
-		// TODO: GROUP TYPE OF METRICS
-		p.callDiscovery[m] = 0
+		p.callDiscovery = append(p.callDiscovery, m)
 	}
 
 	p.initialized = true

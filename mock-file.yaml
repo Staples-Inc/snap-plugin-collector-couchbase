@@ -7,7 +7,7 @@
   workflow: 
     collect: 
       metrics: 
-        /staples/couchbase/couch_total_disk_size: {}
+        /staples/couchbase/travel-sample/couch_total_disk_size: {}
       config: 
       process: 
         - 
@@ -15,6 +15,7 @@
           process: null
           publish: 
             - 
-              plugin_name: "file"
+              plugin_name: "mock-file"
               config: 
-                file: "/tmp/snap_published_couchbase_file.log"
+                file: "./snap_published_couchbase_file.log"
+
