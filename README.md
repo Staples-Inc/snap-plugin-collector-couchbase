@@ -34,6 +34,6 @@ This plugin as the ability to collect the following metrics:
 
 Namespace | Data Type | Description
 ----------|-----------|----------------------
-/staples/couchbase/{name}/avg_bg_wait_time | int | exssss 
-/staples/couchbase/{name}/avg_disk_commit_time | int | sjsjs
-/staples/couchbase/{name}/avg_disk_update_time | int | hshshsh
+/staples/couchbase/{name}/avg_bg_wait_time | int | avg time 
+/staples/couchbase/{name}/avg_disk_commit_time | int | commit time
+/staples/couchbase/{name}/avg_disk_update_time | int | update time
