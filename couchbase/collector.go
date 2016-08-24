@@ -15,13 +15,7 @@ func NewCollector(cfg map[string]interface{}) *metricCollector {
 	un := cfg["username"].(string)
 	pw := cfg["password"].(string)
 
-	// TODO: Switch for types??
-	self.samples = &BucketStats{url: url, un: un, pw: pw}
-
-	// Hard coded values could be removed.
-	//self.url = "http://localhost:32777/pools/default/buckets/travel-sample/stats"
-	//self.un = "admin"
-	//self.pw = "password"
+	self.samples = &BucketStats{Url: url, Un: un, Pw: pw}
 
 	return self
 }
@@ -66,16 +60,16 @@ type metrictap interface {
 
 // BucketStats
 type BucketStats struct {
-	url string
-	un  string
-	pw  string
+	Url string
+	Un  string
+	Pw  string
 }
 
 func (self BucketStats) GetSamples() (samples map[string]interface{}, err error) {
 
 	// Make init request to /pools/default/buckets/
 	var buckets []map[string]interface{}
-	self.GetAuthRequest(self.url, &buckets)
+	self.GetAuthRequest(self.Url, &buckets)
 
 	samples = make(map[string]interface{})
 
@@ -84,7 +78,7 @@ func (self BucketStats) GetSamples() (samples map[string]interface{}, err error)
 		name := b["name"].(string)
 
 		var stats map[string]interface{}
-		rurl := self.url + name + "/stats"
+		rurl := self.Url + name + "/stats"
 
 		err = self.GetAuthRequest(rurl, &stats)
 		if err != nil {
@@ -106,7 +100,7 @@ func (self BucketStats) GetAuthRequest(rurl string, data interface{}) (err error
 	client := &http.Client{}
 
 	req, err := http.NewRequest("GET", rurl, nil)
-	req.SetBasicAuth(self.un, self.pw)
+	req.SetBasicAuth(self.Un, self.Pw)
 	resp, err := client.Do(req)
 	if err != nil {
 		return

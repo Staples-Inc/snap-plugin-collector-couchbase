@@ -18,6 +18,7 @@ Staples, Inc.
 Snap is Open Source software released under the Apache 2.0 License.
 
 ## Documentation
+
 ### Source structure
 ```
 main.go
