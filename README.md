@@ -34,7 +34,7 @@ Make sure your set up a snap config file and a readonly user for your couchbase 
           "all": {
             "api_url": "http://YOURSERVERNAME:8091/pools/default/buckets/",
             "username": "myRO_username",
-            "password": "myRO_password",
+            "password": "myRO_password"
           }
         }
       }
@@ -46,6 +46,7 @@ Make sure your set up a snap config file and a readonly user for your couchbase 
 Run snapd with the config file. Then use snapctl to list discovered metrics. You can then write your task file. We have an examples in the examples folder.
 ```
 ./snapd --plugin-trust 0 --log-level 1 --config /path/to/config/config.json
+
 ./snapctl metric list
 ```
 
