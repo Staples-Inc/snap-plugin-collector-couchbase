@@ -1,0 +1,15 @@
+{
+    "control": {
+        "plugins": {
+            "collector": {
+                "couchbase": {
+                    "all": {
+                        "api_url": "http://YOURSERVERNAME:8091/pools/default/buckets/",
+			"username": "my_username",
+			"password": "my_password",
+		    }
+                }
+            }
+        }
+    }
+}

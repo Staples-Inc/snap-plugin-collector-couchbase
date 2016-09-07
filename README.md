@@ -23,12 +23,39 @@ Snap is Open Source software released under the Apache 2.0 License.
 $ go install // this will build the binary in your $GOPATH/bin 
 ```
 
+### Run
+Make sure your set up a snap config file and a readonly user for your couchbase server.
+```
+// Also provided in examples/configs/config-ex.json
+{
+  "control": {
+    "plugins": {
+      "collector": {
+        "couchbase": {
+          "all": {
+            "api_url": "http://YOURSERVERNAME:8091/pools/default/buckets/",
+            "username": "myRO_username",
+            "password": "myRO_password",
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+Run snapd with the config file. Then use snapctl to list discovered metrics. You can then write your task file. We have an example in the examples folder.
+```
+./snapd --plugin-trust 0 --log-level 1 --config /path/to/config/config.json
+./snapctl metric list
+```
+
 ### Source structure
 ```
 main.go
 couchbase/
-  |  collector.go
-  |  couchbase.go
+  |  collector.go //implements the collection of bucket stats
+  |  couchbase.go //implements the snap interfaces.
 ```
 
 ### TODO
