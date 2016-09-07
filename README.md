@@ -20,7 +20,7 @@ Snap is Open Source software released under the Apache 2.0 License.
 ## Documentation
 ### Build
 ```
-	$ go install // this will build the binary in your $GOPATH/bin 
+$ go install // this will build the binary in your $GOPATH/bin 
 ```
 
 ### Source structure
