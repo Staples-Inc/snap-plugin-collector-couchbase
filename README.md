@@ -1,5 +1,5 @@
 # Snap Couchbase Collector Plugin
-Intelsdi-x [snap](http://github.com:intelsdi-x/snap) plugin for couchbase bucket monitoring. It uses couchbase's provided RESTAPI. Read more about bucket monitoring in this [blog post](http://blog.couchbase.com/monitoring-couchbase-cluster) from couchbase.
+Intelsdi-x [snap](http://github.com/intelsdi-x/snap) plugin for couchbase bucket monitoring. It uses couchbase's provided RESTAPI. Read more about bucket monitoring in this [blog post](http://blog.couchbase.com/monitoring-couchbase-cluster) from couchbase.
 
 ### Snap version requires at least
 v0.14.0-beta
