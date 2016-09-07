@@ -26,13 +26,13 @@ $ go install // this will build the binary in your $GOPATH/bin
 ### Run
 Make sure your set up a snap config file and a readonly user for your couchbase server.
 ```
-// Also provided in examples/configs/config-ex.json
-{
-  "control": {
-    "plugins": {
-      "collector": {
-        "couchbase": {
-          "all": {
+// Also provided in examples/configs/config-ex.json <br>
+{ <br>
+  "control": { <br>
+    "plugins": { <br>
+      "collector": { <br>
+        "couchbase": { <br>
+          "all": { <br>
             "api_url": "http://YOURSERVERNAME:8091/pools/default/buckets/",
             "username": "myRO_username",
             "password": "myRO_password",
