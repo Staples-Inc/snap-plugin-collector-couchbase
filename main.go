@@ -1,8 +1,7 @@
 package main
 
 import (
-	"snap-plugin-collector-couchbase/couchbase"
-	//	"snap-plugin-collector-netstat/snap/control/plugin"
+	"github.com/Staples-Inc/snap-plugin-collector-couchbase/couchbase"
 	"github.com/intelsdi-x/snap/control/plugin"
 	"log"
 	"os"
