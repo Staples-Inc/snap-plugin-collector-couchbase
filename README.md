@@ -19,8 +19,9 @@ Snap is Open Source software released under the Apache 2.0 [License](LICENSE).
 
 ## Documentation
 ### Build
+This will build the plugin binary in your $GOPATH/bin
 ```
-$ go install // this will build the binary in your $GOPATH/bin 
+$ go install github.com/Staples-Inc/snap-plugin-collector-couchbase 
 ```
 
 ### Run
@@ -46,7 +47,32 @@ Make sure your set up a snap config file and a readonly user for your couchbase 
 Run snapd with the config file. Then use snapctl to list discovered metrics. You can then write your task file. We have an examples in the examples folder.
 ```
 $ ./snapd --plugin-trust 0 --log-level 1 --config /path/to/config/config.json
+$ ./snapctl plugin load $GOPATH/bin/snap-plugin-collector-couchbase
 $ ./snapctl metric list
+```
+
+You can then write your task file. We have an examples here below that also uses the passthru and mock-file plugin.
+```yaml
+---
+  version: 1
+  schedule: 
+    type: "simple"
+    interval: "5s"
+  max-failures: 10
+  workflow: 
+    collect: 
+      metrics: 
+        /staples/couchbase/*: {}
+      config: 
+      process: 
+        - 
+          plugin_name: "passthru"
+          process: null
+          publish: 
+            - 
+              plugin_name: "mock-file"
+              config: 
+                file: "./snap_published_mongo_file.log"
 ```
 
 ### Source structure
