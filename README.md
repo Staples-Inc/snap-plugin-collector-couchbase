@@ -21,7 +21,7 @@ Snap is Open Source software released under the Apache 2.0 [License](LICENSE).
 ### Build
 This will build the plugin binary in your $GOPATH/bin
 ```
-$ go install github.com/Staples-Inc/snap-plugin-collector-couchbase 
+$ go get github.com/Staples-Inc/snap-plugin-collector-couchbase 
 ```
 
 ### Run
