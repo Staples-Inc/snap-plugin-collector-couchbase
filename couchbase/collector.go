@@ -8,27 +8,27 @@ import (
 
 // NewCollector constructs new metricCollector that will request given stats and
 // fail if they are unavailable.
-func NewCollector(cfg map[string]interface{}) *metricCollector {
-	self := new(metricCollector)
+func NewCollector(cfg map[string]string) *Collector {
+	self := new(Collector)
 
-	url := cfg["api_url"].(string)
-	un := cfg["username"].(string)
-	pw := cfg["password"].(string)
+	url := cfg["api_url"]
+	un := cfg["username"]
+	pw := cfg["password"]
 
-	self.samples = &BucketStats{Url: url, Un: un, Pw: pw}
+	self.app = &BucketStats{Url: url, Un: un, Pw: pw, Client: &http.Client{}}
 
 	return self
 }
 
 // metricCollector implements logic for discovering available metrics
-type metricCollector struct {
-	samples metrictap
+type Collector struct {
+	app App
 }
 
 // Collect returns map of metric values (accessible by metric name).
 // If any of requested calls fail error is returned.
-func (mc *metricCollector) Collect() (map[string]interface{}, error) {
-	samples, err := mc.samples.GetSamples()
+func (mc *Collector) Collect() (map[string]interface{}, error) {
+	samples, err := mc.app.GetSamples()
 	if err != nil {
 		return nil, err
 	}
@@ -38,8 +38,8 @@ func (mc *metricCollector) Collect() (map[string]interface{}, error) {
 
 // Discover performs metric discovery. Returns valid metric names and
 // if mandatory request fails error is returned.
-func (mc *metricCollector) Discover() ([]string, error) {
-	samples, err := mc.samples.GetSamples()
+func (mc *Collector) Discover() ([]string, error) {
+	samples, err := mc.app.GetSamples()
 	if err != nil {
 		return nil, err
 	}
@@ -53,8 +53,8 @@ func (mc *metricCollector) Discover() ([]string, error) {
 	return res, nil
 }
 
-// Interface for couchbase api taps
-type metrictap interface {
+// Interface for api taps
+type App interface {
 	GetSamples() (samples map[string]interface{}, err error)
 }
 
@@ -63,6 +63,7 @@ type BucketStats struct {
 	Url string
 	Un  string
 	Pw  string
+	Client *http.Client
 }
 
 func (self BucketStats) GetSamples() (samples map[string]interface{}, err error) {
@@ -97,14 +98,14 @@ func (self BucketStats) GetSamples() (samples map[string]interface{}, err error)
 }
 
 func (self BucketStats) GetAuthRequest(rurl string, data interface{}) (err error) {
-	client := &http.Client{}
-
 	req, err := http.NewRequest("GET", rurl, nil)
 	req.SetBasicAuth(self.Un, self.Pw)
-	resp, err := client.Do(req)
+	resp, err := self.Client.Do(req)
 	if err != nil {
 		return
 	}
+
+	defer resp.Body.Close()
 
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {

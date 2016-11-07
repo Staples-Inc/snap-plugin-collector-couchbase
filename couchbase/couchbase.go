@@ -1,10 +1,7 @@
 package couchbase
 
 import (
-	"github.com/intelsdi-x/snap-plugin-utilities/config"
-	"github.com/intelsdi-x/snap/control/plugin"
-	"github.com/intelsdi-x/snap/control/plugin/cpolicy"
-	"github.com/intelsdi-x/snap/core"
+	"github.com/intelsdi-x/snap-plugin-lib-go/v1/plugin"
 
 	"fmt"
 	"strings"
@@ -12,26 +9,14 @@ import (
 )
 
 const (
-	// Name of plugin
 	Name = "couchbase"
-	// Version of plugin
 	Version = 1
-	// Type of plugin
-	Type = plugin.CollectorPluginType
 )
 
 type CouchBasePlugin struct {
-	// is initialized
 	initialized bool
-	// discovered metric namespaces
 	callDiscovery []string
-	// an interface for the metrics collector
-	couchbase collector
-}
-
-// Meta returns plugin's metadata
-func Meta() *plugin.PluginMeta {
-	return plugin.NewPluginMeta(Name, Version, Type, []string{plugin.SnapGOBContentType}, []string{plugin.SnapGOBContentType})
+	app collector
 }
 
 // New returns initialized instance of Plugin collector
@@ -41,18 +26,17 @@ func New() *CouchBasePlugin {
 }
 
 // GetConfigPolicy returns plugin config policy
-func (p *CouchBasePlugin) GetConfigPolicy() (*cpolicy.ConfigPolicy, error) {
-	c := cpolicy.New()
-	return c, nil
+func (p *CouchBasePlugin) GetConfigPolicy() (plugin.ConfigPolicy, error) {
+	cfg := plugin.NewConfigPolicy()
+	return *cfg, nil
 }
 
 // Collect requested metrics. Error is returned when metric collection failed or plugin
 // initialization was unsuccessful.
-func (p *CouchBasePlugin) CollectMetrics(mts []plugin.MetricType) ([]plugin.MetricType, error) {
-
+func (p *CouchBasePlugin) CollectMetrics(mts []plugin.Metric) ([]plugin.Metric, error) {
 	// check init
 	if len(mts) > 0 {
-		err := p.init(mts[0])
+		err := p.init(mts[0].Config)
 
 		if err != nil {
 			return nil, err
@@ -62,9 +46,9 @@ func (p *CouchBasePlugin) CollectMetrics(mts []plugin.MetricType) ([]plugin.Metr
 	}
 
 	// results to be returned
-	results := make([]plugin.MetricType, len(mts))
+	results := make([]plugin.Metric, len(mts))
 
-	metrics, err := p.couchbase.Collect()
+	metrics, err := p.app.Collect()
 
 	if err != nil {
 		return nil, err
@@ -73,11 +57,11 @@ func (p *CouchBasePlugin) CollectMetrics(mts []plugin.MetricType) ([]plugin.Metr
 	t := time.Now()
 
 	for i, mt := range mts {
-		value := metrics[parseName(mt.Namespace().Strings())]
-		results[i] = plugin.MetricType{
-			Namespace_: mt.Namespace(),
-			Data_:      value,
-			Timestamp_: t,
+		value := metrics[parseName(mt.Namespace.Strings())]
+		results[i] = plugin.Metric {
+			Namespace: mt.Namespace,
+			Data:      value,
+			Timestamp: t,
 		}
 	}
 
@@ -86,18 +70,17 @@ func (p *CouchBasePlugin) CollectMetrics(mts []plugin.MetricType) ([]plugin.Metr
 
 // GetMetricTypes returns list of available metrics. If initialization failed
 // error is returned.
-func (p *CouchBasePlugin) GetMetricTypes(cfg plugin.ConfigType) ([]plugin.MetricType, error) {
-
+func (p *CouchBasePlugin) GetMetricTypes(cfg plugin.Config) ([]plugin.Metric, error) {
 	//check init
 	err := p.init(cfg)
 	if err != nil {
 		return nil, err
 	}
 
-	mts := []plugin.MetricType{}
+	mts := []plugin.Metric{}
 
 	for _, k := range p.callDiscovery {
-		mts = append(mts, plugin.MetricType{Namespace_: core.NewNamespace(makeName(k)...)})
+		mts = append(mts, plugin.Metric{Namespace: plugin.NewNamespace(makeName(k)...)})
 	}
 	return mts, nil
 }
@@ -105,20 +88,27 @@ func (p *CouchBasePlugin) GetMetricTypes(cfg plugin.ConfigType) ([]plugin.Metric
 // init performs one time initialization of plugin. Reads configuration from cfg
 // and constructs all service objets that will be used during plugin's lifetime.
 // returns error if initialization failed.
-func (p *CouchBasePlugin) init(cfg interface{}) error {
-
+func (p *CouchBasePlugin) init(cfg plugin.Config) error {
 	if p.initialized {
 		return nil
 	}
 
-	cfgItems, err := config.GetConfigItems(cfg, "api_url", "username", "password")
+	api, err := cfg.GetString("api_url")
+	un, err := cfg.GetString("username")
+	pw, err := cfg.GetString("password")
 	if err != nil {
 		return fmt.Errorf("plugin initalization failed : [%v]", err)
 	}
 
-	p.couchbase = makeCollector(cfgItems)
+	cfgItems := map[string]string{
+		"api_url": api,
+		"username": un,
+		"password": pw,
+	}
 
-	metrics, err := p.couchbase.Discover()
+	p.app = makeCollector(cfgItems)
+
+	metrics, err := p.app.Discover()
 	if err != nil {
 		return err
 	}
@@ -132,7 +122,7 @@ func (p *CouchBasePlugin) init(cfg interface{}) error {
 }
 
 // for mocking
-var makeCollector = func(cfg map[string]interface{}) collector { return NewCollector(cfg) }
+var makeCollector = func(cfg map[string]string) collector { return NewCollector(cfg) }
 
 // prefix of all namespaces
 var namespacePrefix = []string{"staples", "couchbase"}
