@@ -70,7 +70,10 @@ func (self BucketStats) GetSamples() (samples map[string]interface{}, err error)
 
 	// Make init request to /pools/default/buckets/
 	var buckets []map[string]interface{}
-	self.GetAuthRequest(self.Url, &buckets)
+	err = self.GetAuthRequest(self.Url, &buckets)
+	if err != nil {
+		return
+	}
 
 	samples = make(map[string]interface{})
 
