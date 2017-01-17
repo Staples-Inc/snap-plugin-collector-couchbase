@@ -10,8 +10,15 @@ type CouchBasePlugin struct {
 	collector   *BucketCollector
 }
 
+func New() (*CouchBasePlugin, error) {
+	return &CouchBasePlugin{
+		initialized: false,
+		collector:   &BucketCollector{},
+	}, nil
+}
+
 // GetConfigPolicy returns plugin config policy
-func (cbp CouchBasePlugin) GetConfigPolicy() (plugin.ConfigPolicy, error) {
+func (cbp *CouchBasePlugin) GetConfigPolicy() (plugin.ConfigPolicy, error) {
 	policy := plugin.NewConfigPolicy()
 	policy.AddNewStringRule([]string{"staples", "couchbase"}, "api_url", true)
 	policy.AddNewStringRule([]string{"staples", "couchbase"}, "username", true)
@@ -21,7 +28,7 @@ func (cbp CouchBasePlugin) GetConfigPolicy() (plugin.ConfigPolicy, error) {
 
 // Collect requested metrics. Error is returned when metric collection failed or plugin
 // initialization was unsuccessful.
-func (cbp CouchBasePlugin) CollectMetrics(mts []plugin.Metric) ([]plugin.Metric, error) {
+func (cbp *CouchBasePlugin) CollectMetrics(mts []plugin.Metric) ([]plugin.Metric, error) {
 
 	if cbp.initialized == false {
 		collector, err := NewCollector(mts[0].Config)
@@ -60,7 +67,7 @@ func (cbp CouchBasePlugin) CollectMetrics(mts []plugin.Metric) ([]plugin.Metric,
 
 // GetMetricTypes returns list of available metrics. If initialization failed
 // error is returned.
-func (cbp CouchBasePlugin) GetMetricTypes(cfg plugin.Config) ([]plugin.Metric, error) {
+func (cbp *CouchBasePlugin) GetMetricTypes(cfg plugin.Config) ([]plugin.Metric, error) {
 	mts := []plugin.Metric{}
 
 	for _, m := range Metrics() {

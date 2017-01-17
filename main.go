@@ -11,5 +11,10 @@ const (
 )
 
 func main() {
-	plugin.StartCollector(couchbase.CouchBasePlugin{}, Name, Version)
+	cbp, err := couchbase.New()
+	if err != nil {
+		panic(err)
+	}
+
+	plugin.StartCollector(cbp, Name, Version)
 }
