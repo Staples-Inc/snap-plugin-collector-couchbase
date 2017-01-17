@@ -1,11 +1,13 @@
 # Snap Couchbase Collector Plugin
 Intelsdi-x [snap](http://github.com/intelsdi-x/snap) plugin for couchbase bucket monitoring. It uses couchbase's provided RESTAPI. Read more about bucket monitoring in this [blog post](http://blog.couchbase.com/monitoring-couchbase-cluster) from couchbase.
 
-### Snap version requires at least
-v0.14.0-beta
+### Snap version requires at least for plugin_v
+- v0.14.0-beta - v1.0
+- v1.0.0 - v2.0
 
-### Snap version tested up to
-v0.15.0-beta
+### Snap version tested up to plugin_v
+- v0.15.0-beta - v1.0
+- v1.0.0 - v2.0
 
 ### Supported platforms
 darwin-amd64
@@ -23,9 +25,15 @@ This will build the plugin binary in your $GOPATH/bin
 ```
 $ go get github.com/Staples-Inc/snap-plugin-collector-couchbase
 ```
+We like to use glide vendor install though.
+```
+$ cd github.com/Staples-Inc/snap-plugin-collector-couchbase
+$ glide install # Glide will create vendor folder.
+$ go build # Then build.
+```
 
 ### Run
-Make sure your set up a snap config file and a readonly user for your couchbase server.
+Make sure your set up a snap config file and a readonly user for your couchbase server. As of v2.0 this is OPTIONAL.
 ```json
 {
   "control": {
@@ -44,11 +52,11 @@ Make sure your set up a snap config file and a readonly user for your couchbase 
 }
 ```
 
-Run snapd with the config file. Then use snapctl to list discovered metrics.
+Run snapteld with a optional config file. Then use snaptel to load plugin and list metrics names.
 ```
-$ ./snapd --plugin-trust 0 --log-level 1 --config /path/to/config/config.json
-$ ./snapctl plugin load $GOPATH/bin/snap-plugin-collector-couchbase
-$ ./snapctl metric list
+$ ./snapteld --plugin-trust 0 --log-level 1 --config /path/to/config/config.json
+$ ./snaptel plugin load $GOPATH/bin/snap-plugin-collector-couchbase
+$ ./snaptel metric list
 ```
 
 You can then write your task file. We have an example here below that also uses the passthru and mock-file plugin.
@@ -64,15 +72,19 @@ You can then write your task file. We have an example here below that also uses 
       metrics:
         /staples/couchbase/*: {}
       config:
+        /staples/couchbase:
+          api_url: "http://MYSERVER:8091/pools/default/buckets/"
+          username: "ROUSER"
+          password: "ROPW"
       process:
         -
-          plugin_name: "passthru"
+          plugin_name: "test-reverse-processor"
           process: null
           publish:
             -
-              plugin_name: "mock-file"
+              plugin_name: "test-file-publisher"
               config:
-                file: "./snap_published_couchbase_file.log"
+                file: "/tmp/snap_published_grpc_file.log"
 ```
 
 ### Source structure
@@ -81,8 +93,8 @@ main.go
 couchbase/
   |  collector.go //implements the collection of bucket stats
   |  couchbase.go //implements the snap interfaces.
+  |  metrics.go   //contains a string slice of metrics
 ```
 
 ### TODO
 - Build Test
-- Build With Glide
