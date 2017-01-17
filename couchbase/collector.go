@@ -2,71 +2,37 @@ package couchbase
 
 import (
 	"encoding/json"
+	"github.com/intelsdi-x/snap-plugin-lib-go/v1/plugin"
 	"io/ioutil"
 	"net/http"
 )
 
-// NewCollector constructs new metricCollector that will request given stats and
-// fail if they are unavailable.
-func NewCollector(cfg map[string]string) *Collector {
-	self := new(Collector)
-
-	url := cfg["api_url"]
-	un := cfg["username"]
-	pw := cfg["password"]
-
-	self.app = &BucketStats{Url: url, Un: un, Pw: pw, Client: &http.Client{}}
-
-	return self
+type BucketMetric struct {
+	Bucket string
+	Metric string
+	Data   interface{}
 }
 
-// metricCollector implements logic for discovering available metrics
-type Collector struct {
-	app App
-}
-
-// Collect returns map of metric values (accessible by metric name).
-// If any of requested calls fail error is returned.
-func (mc *Collector) Collect() (map[string]interface{}, error) {
-	samples, err := mc.app.GetSamples()
-	if err != nil {
-		return nil, err
-	}
-
-	return samples, nil
-}
-
-// Discover performs metric discovery. Returns valid metric names and
-// if mandatory request fails error is returned.
-func (mc *Collector) Discover() ([]string, error) {
-	samples, err := mc.app.GetSamples()
-	if err != nil {
-		return nil, err
-	}
-
-	res := []string{}
-
-	for key := range samples {
-		res = append(res, key)
-	}
-
-	return res, nil
-}
-
-// Interface for api taps
-type App interface {
-	GetSamples() (samples map[string]interface{}, err error)
-}
-
-// BucketStats
-type BucketStats struct {
-	Url string
-	Un  string
-	Pw  string
+type BucketCollector struct {
+	Url    string
+	Un     string
+	Pw     string
 	Client *http.Client
 }
 
-func (self BucketStats) GetSamples() (samples map[string]interface{}, err error) {
+func NewCollector(cfg plugin.Config) (bc *BucketCollector, err error) {
+	url, err := cfg.GetString("api_url")
+	un, err := cfg.GetString("username")
+	pw, err := cfg.GetString("password")
+	if err != nil {
+		return
+	}
+
+	bc = &BucketCollector{Url: url, Un: un, Pw: pw, Client: &http.Client{}}
+	return
+}
+
+func (self BucketCollector) GetSamples() (metrics []BucketMetric, err error) {
 
 	// Make init request to /pools/default/buckets/
 	var buckets []map[string]interface{}
@@ -74,8 +40,6 @@ func (self BucketStats) GetSamples() (samples map[string]interface{}, err error)
 	if err != nil {
 		return
 	}
-
-	samples = make(map[string]interface{})
 
 	// For each bucket get name and make /stats request
 	for _, b := range buckets {
@@ -92,15 +56,14 @@ func (self BucketStats) GetSamples() (samples map[string]interface{}, err error)
 		res := stats["op"].(map[string]interface{})["samples"].(map[string]interface{})
 
 		for key, value := range res {
-			sk := name + "/" + key
-			samples[sk] = value.([]interface{})[0]
+			metrics = append(metrics, BucketMetric{Bucket: name, Metric: key, Data: value.([]interface{})[0]})
 		}
 	}
 
 	return
 }
 
-func (self BucketStats) GetAuthRequest(rurl string, data interface{}) (err error) {
+func (self BucketCollector) GetAuthRequest(rurl string, data interface{}) (err error) {
 	req, err := http.NewRequest("GET", rurl, nil)
 	req.SetBasicAuth(self.Un, self.Pw)
 	resp, err := self.Client.Do(req)

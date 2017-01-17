@@ -5,6 +5,11 @@ import (
 	"github.com/intelsdi-x/snap-plugin-lib-go/v1/plugin"
 )
 
+const (
+	Name    = "couchbase"
+	Version = 1
+)
+
 func main() {
-	plugin.StartCollector(couchbase.New(), couchbase.Name, couchbase.Version)
+	plugin.StartCollector(couchbase.CouchBasePlugin{}, Name, Version)
 }

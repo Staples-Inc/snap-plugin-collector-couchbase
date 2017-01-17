@@ -3,3 +3,4 @@ snapctl
 vendor
 glide.lock
 examples/configs/config.json
+.ftpconfig
