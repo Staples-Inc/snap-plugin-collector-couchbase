@@ -7,7 +7,7 @@ import (
 
 const (
 	Name    = "couchbase"
-	Version = 1
+	Version = 2
 )
 
 func main() {
