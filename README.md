@@ -28,31 +28,12 @@ $ go get github.com/Staples-Inc/snap-plugin-collector-couchbase
 We like to use glide vendor install though.
 ```
 $ cd github.com/Staples-Inc/snap-plugin-collector-couchbase
-$ glide install # Glide will create vendor folder.
-$ go build # Then build.
+$ glide up    # Glide will create vendor folder.
+$ go build    # Then build.
 ```
 
 ### Run
-Make sure your set up a snap config file and a readonly user for your couchbase server. As of v2.0 this is OPTIONAL.
-```json
-{
-  "control": {
-    "plugins": {
-      "collector": {
-        "couchbase": {
-          "all": {
-            "api_url": "http://YOURSERVERNAME:8091/pools/default/buckets/",
-            "username": "myRO_username",
-            "password": "myRO_password"
-          }
-        }
-      }
-    }
-  }
-}
-```
-
-Run snapteld with a optional config file. Then use snaptel to load plugin and list metrics names.
+Run snapteld with a config file if running v1.0. Then use snaptel to load plugin and list metrics names.
 ```
 $ ./snapteld --plugin-trust 0 --log-level 1 --config /path/to/config/config.json
 $ ./snaptel plugin load $GOPATH/bin/snap-plugin-collector-couchbase
